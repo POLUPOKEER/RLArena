@@ -1,3 +1,3 @@
 
-Ссылка на сайт: https://bubliki.duuuuuuuden.ru/
+Ссылка на сайт(не актуально): https://bubliki.duuuuuuuden.ru/
 
