@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "../components/Footer";
-import "./FAQpage.css";
 
 const Questions = {
   "Учетная запись": [
