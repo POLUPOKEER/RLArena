@@ -13,11 +13,12 @@ import CompetitionList from "./components/CompetitionList.jsx";
 import ComHero from "./components/ComHero.jsx";
 import TabMenu from "./components/TabMenu.jsx";
 import Course from "./components/Course.jsx";
+import "./index.css";
 import TabMenuCourse from "./components/TabMenuCourse.jsx";
 import Registration from "./components/Registration.jsx";
 import Login from "./components/Login.jsx";
+import FAQpage from "./pages/FAQpage.jsx";
 import LearningPage from "./pages/LearningPage.jsx";
-import "./index.css";
 
 const App = () => {
   return (
@@ -67,13 +68,14 @@ const App = () => {
           }
         />
         <Route
-          path="/faq"
+          path="/forum"
           element={
             <>
               <Footer />
             </>
           }
         />
+        <Route path="/faq" element={<FAQpage />} />
         <Route
           path="/contact"
           element={
