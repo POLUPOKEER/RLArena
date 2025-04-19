@@ -1,109 +1,124 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Competitions from './components/Competitions';
-import Courses from './components/Courses';
-import Footer from './components/Footer';
-import ForWho from './components/ForWho';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import News from './components/News';
-import CompetitionHero from './components/CompetitionHero';
-import CompetitionTabs from './components/competitionTabs';
-import СompetitionTabsNow from './components/СompetitionTabsNow.jsx';
-import CompetitionList from './components/CompetitionList.jsx';
-import LearningHero from './components/LearningHero.jsx';
-import BeginnerCourses from './components/BeginnerCourses.jsx';
-import BeginnerCoursesTabsNow from './components/BeginnerCoursesTabsNow.jsx';
-import BeginnerCourseslist from './components/BeginnerCourseslist.jsx';
-import ComHero from './components/ComHero.jsx';
-import TabMenu from './components/TabMenu.jsx';
-import Course from './components/Course.jsx';
-import './index.css';
-import TabMenuCourse from './components/TabMenuCourse.jsx';
-import Registration from './components/Registration.jsx';
-import Login from './components/Login.jsx';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Competitions from "./components/Competitions";
+import Courses from "./components/Courses";
+import Footer from "./components/Footer";
+import ForWho from "./components/ForWho";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import News from "./components/News";
+import CompetitionHero from "./components/CompetitionHero";
+import CompetitionTabs from "./components/competitionTabs";
+import СompetitionTabsNow from "./components/СompetitionTabsNow.jsx";
+import CompetitionList from "./components/CompetitionList.jsx";
+import ComHero from "./components/ComHero.jsx";
+import TabMenu from "./components/TabMenu.jsx";
+import Course from "./components/Course.jsx";
+import TabMenuCourse from "./components/TabMenuCourse.jsx";
+import Registration from "./components/Registration.jsx";
+import Login from "./components/Login.jsx";
+import LearningPage from "./pages/LearningPage.jsx";
+import "./index.css";
 
 const App = () => {
   return (
     <Router>
       <Header />
       <Routes>
-      <Route path="/" element={
-          <>
-            <Registration />
-
-          </>
-        } />
-        <Route path="/Main" element={
-          <>
-            <Hero />
-            <ForWho />
-            <Competitions />
-            <Courses />
-            <News />
-            <Footer />
-          </>
-        } />
-        <Route path="/Competitions" element={
-          <>
-          <CompetitionHero />
-          <CompetitionTabs />
-          <СompetitionTabsNow/>
-          <CompetitionList/>
-          <Footer />
-          </>
-          } />
-          <Route path="/learning" element={
+        <Route
+          path="/"
+          element={
             <>
-            <LearningHero />
-            <BeginnerCourses/>
-            <BeginnerCoursesTabsNow/>
-            <BeginnerCourseslist/>
-            <Footer />
+              <Registration />
             </>
-            } />
-            <Route path="/forum" element={
+          }
+        />
+        <Route
+          path="/Main"
+          element={
             <>
-            <Footer />
+              <Hero />
+              <ForWho />
+              <Competitions />
+              <Courses />
+              <News />
+              <Footer />
             </>
-            } />
-            <Route path="/faq" element={
+          }
+        />
+        <Route
+          path="/Competitions"
+          element={
             <>
-            <Footer />
+              <CompetitionHero />
+              <CompetitionTabs />
+              <СompetitionTabsNow />
+              <CompetitionList />
+              <Footer />
             </>
-            } />
-            <Route path="/contact" element={
+          }
+        />
+        <Route path="/learning" element={<LearningPage />} />
+        <Route
+          path="/forum"
+          element={
             <>
-            <Footer />
+              <Footer />
             </>
-            
-            } />
-            <Route path="/Competition" element={
+          }
+        />
+        <Route
+          path="/faq"
+          element={
             <>
-            <ComHero/>
-            <TabMenu />
-            <Footer />
+              <Footer />
             </>
-            } />
-            <Route path="/Course" element={
+          }
+        />
+        <Route
+          path="/contact"
+          element={
             <>
-            <Course/>
-            <TabMenuCourse />
-            <Footer />
+              <Footer />
             </>
-            } />
-            <Route path="/Registration" element={
+          }
+        />
+        <Route
+          path="/Competition"
+          element={
             <>
-            <Registration/>
+              <ComHero />
+              <TabMenu />
+              <Footer />
             </>
-            } />
-            <Route path="/Login" element={
+          }
+        />
+        <Route
+          path="/Course"
+          element={
             <>
-            <Login/>
+              <Course />
+              <TabMenuCourse />
+              <Footer />
             </>
-            } />
-
+          }
+        />
+        <Route
+          path="/Registration"
+          element={
+            <>
+              <Registration />
+            </>
+          }
+        />
+        <Route
+          path="/Login"
+          element={
+            <>
+              <Login />
+            </>
+          }
+        />
       </Routes>
-      
     </Router>
   );
 };
