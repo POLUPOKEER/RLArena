@@ -1,4 +1,3 @@
-import React from "react";
 import LearningHero from "../components/LearningHero";
 import BeginnerCourses from "../components/BeginnerCourses";
 import ImproveSkillsCoursesList from "../components/ImproveSkillsCoursesList";
