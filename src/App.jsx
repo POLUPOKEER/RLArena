@@ -22,6 +22,7 @@ import TabMenuCourse from "./components/TabMenuCourse.jsx";
 import Registration from "./components/Registration.jsx";
 import Login from "./components/Login.jsx";
 import FAQpage from "./pages/FAQpage.jsx";
+import CompetitionPage from "./pages/CompetitionPage.jsx";
 
 const App = () => {
   return (
@@ -90,16 +91,7 @@ const App = () => {
             </>
           }
         />
-        <Route
-          path="/Competition"
-          element={
-            <>
-              <ComHero />
-              <TabMenu />
-              <Footer />
-            </>
-          }
-        />
+        <Route path="/Competition" element={<CompetitionPage />} />
         <Route
           path="/Course"
           element={

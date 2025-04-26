@@ -16,41 +16,39 @@ const ComHero = () => {
   };
 
   return (
-    <div className="relative w-full min-h-[600px] md:h-[726px] flex items-center justify-center overflow-hidden ">
+    <section className="relative w-full flex flex-col items-center py-10 px-4 overflow-hidden">
       {/* Основной контейнер */}
-      <div className="relative flex items-start justify-between w-[90%] max-w-[1200px] bg-primary shadow-lg rounded-[50px] p-6 md:p-10 z-20">
-        {/* Картинка слева */}
-        <div className="flex-shrink-0 w-[45%] md:w-[45%]  mt-[30px]">
+      <div className="relative flex flex-col md:flex-row items-center md:items-start justify-between w-full max-w-6xl bg-primary shadow-lg rounded-[30px] p-6 md:p-10 mb-12">
+        
+        {/* Левая часть: Картинка */}
+        <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
           <img
             src="/image 9.svg"
             alt="Competition illustration"
-            className="w-full h-auto object-contain"
+            className="w-full max-w-xs md:max-w-sm object-contain"
           />
-          {/* Дата проведения */}
-          <div className="mt-4 text-sm md:text-base text-gray-700 ml-[50px]">
+          <div className="mt-4 text-sm md:text-base text-gray-700 text-center md:text-left">
             Дата проведения: <strong>с 12.12.2024 по 01.03.2025</strong>
           </div>
         </div>
 
-        {/* Текст справа */}
-        <div className="flex flex-col space-y-6 w-[55%] text-center md:text-left  ml-[20px]">
-          <h1 className="text-[24px] md:text-[36px] lg:text-[50px] leading-tight md:leading-[46px] lg:leading-[56px] font-bold">
+        {/* Правая часть: Текст */}
+        <div className="w-full md:w-1/2 flex flex-col items-center md:items-start mt-8 md:mt-0 md:ml-8 text-center md:text-left">
+          <h1 className="text-[24px] md:text-[36px] lg:text-[48px] font-bold leading-tight mb-4">
             Задача FIDE и Google по созданию эффективного шахматного ИИ
           </h1>
-          <p className="text-[16px] md:text-[20px] lg:text-[24px] text-gray-500 leading-relaxed">
+          <p className="text-[16px] md:text-[20px] lg:text-[24px] text-gray-500 mb-6">
             Создавайте агентов для игры в шахматы с ограниченными ресурсами
           </p>
-          <div className="flex ml-[220px] ">
-          <button className="bg-black text-white px-6 py-2 rounded-full text-[18px] w-[350px]">
-              Принять участие
-            </button>
-          </div>
+          <button className="bg-black text-white px-8 py-3 rounded-full text-[18px] w-full md:w-auto">
+            Принять участие
+          </button>
         </div>
 
         {/* Кнопка-сердечко */}
         <button
           onClick={toggleHeartColor}
-          className="absolute top-4 right-4 w-[40px] h-[40px] flex items-center justify-center rounded-full border border-gray-500 bg-white"
+          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full border border-gray-400 bg-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +69,7 @@ const ComHero = () => {
         width="100"
         height="100"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute left-[9%] top-[20%] transform -translate-y-1/2"
+        className="absolute left-8 top-20 transform -translate-y-1/2 cursor-pointer"
         onClick={handleBubbleClick}
       >
         <circle
@@ -91,7 +89,7 @@ const ComHero = () => {
         width="100"
         height="100"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute left-[10%] top-[28%] transform -translate-y-1/2 cursor-pointer"
+        className="absolute left-10 top-32 transform -translate-y-1/2 cursor-pointer"
         onClick={handleBubbleClick}
       >
         <circle
@@ -118,20 +116,18 @@ const ComHero = () => {
       />
 
       {/* Теги */}
-      <div className="absolute bottom-12 right-[16%] flex flex-wrap items-center space-x-4">
+      <div className="w-full max-w-6xl flex flex-wrap justify-center md:justify-end space-x-2 mt-8">
         <span className="text-sm md:text-base lg:text-lg text-black">Теги:</span>
-        {['Симулятор', 'Настольные игры', 'Обучение с подкреплением'].map(
-          (tag) => (
-            <button
-              key={tag}
-              className="bg-[#2B73B1] text-white px-4 py-2 rounded-full text-sm md:text-base"
-            >
-              {tag}
-            </button>
-          )
-        )}
+        {['Симулятор', 'Настольные игры', 'Обучение с подкреплением'].map((tag) => (
+          <button
+            key={tag}
+            className="bg-[#2B73B1] text-white px-4 py-2 rounded-full text-sm md:text-base mt-2 md:mt-0"
+          >
+            {tag}
+          </button>
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 
