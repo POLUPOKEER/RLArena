@@ -10,10 +10,6 @@ import CompetitionHero from "./components/CompetitionHero";
 import CompetitionTabs from "./components/competitionTabs";
 import СompetitionTabsNow from "./components/СompetitionTabsNow.jsx";
 import CompetitionList from "./components/CompetitionList.jsx";
-import LearningHero from "./components/LearningHero.jsx";
-import BeginnerCourses from "./components/BeginnerCourses.jsx";
-import BeginnerCoursesTabsNow from "./components/BeginnerCoursesTabsNow.jsx";
-import BeginnerCourseslist from "./components/BeginnerCourseslist.jsx";
 import ComHero from "./components/ComHero.jsx";
 import TabMenu from "./components/TabMenu.jsx";
 import Course from "./components/Course.jsx";
@@ -22,6 +18,7 @@ import TabMenuCourse from "./components/TabMenuCourse.jsx";
 import Registration from "./components/Registration.jsx";
 import Login from "./components/Login.jsx";
 import FAQpage from "./pages/FAQpage.jsx";
+import LearningPage from "./pages/LearningPage.jsx";
 import CompetitionPage from "./pages/CompetitionPage.jsx";
 
 const App = () => {
@@ -62,14 +59,11 @@ const App = () => {
             </>
           }
         />
+        <Route path="/learning" element={<LearningPage />} />
         <Route
-          path="/learning"
+          path="/forum"
           element={
             <>
-              <LearningHero />
-              <BeginnerCourses />
-              <BeginnerCoursesTabsNow />
-              <BeginnerCourseslist />
               <Footer />
             </>
           }

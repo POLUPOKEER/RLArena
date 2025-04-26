@@ -1,38 +1,10 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { IMPROVE_SKILLS_COURSES_LIST } from "../helpers/courses";
 
-const BeginnerCoursesTabsNow = () => {
-  const courses = [
-    {
-      title: 'Введение в программирование',
-      description: 'Начните с Python, если у вас нет опыта программирования.',
-      image: '/Vector.svg',
-    },
-    {
-      title: 'Визуализация данных',
-      description:
-        'Создавайте отличные визуализации данных. Отличный способ увидеть всю мощь программирования!',
-      image: '/trace (4) 1.svg',
-    },
-    {
-      title: 'Введение в SQL',
-      description: 'Изучите SQL для работы с базами данных, используя Google BigQuery.',
-      image: '/trace (5) 1.svg',
-    },
-    {
-      title: 'Продвинутый Python',
-      description: 'Углубитесь в Python и узнайте о продвинутых функциях.',
-      image: '/advanced-python.svg',
-    },
-    {
-      title: 'Data Science',
-      description: 'Основы Data Science и работа с большими данными.',
-      image: '/data-science.svg',
-    },
-  ];
-
+const ImproveSkillsCoursesList = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const navigate = useNavigate(); // Инициализируем navigate
+  const navigate = useNavigate();
   const maxVisible = 3;
 
   const prevSlide = () => {
@@ -40,11 +12,13 @@ const BeginnerCoursesTabsNow = () => {
   };
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, courses.length - maxVisible));
+    setCurrentIndex((prevIndex) =>
+      Math.min(prevIndex + 1, IMPROVE_SKILLS_COURSES_LIST.length - maxVisible)
+    );
   };
 
   const handleStartClick = () => {
-    navigate('/course'); // Переход на страницу /course
+    navigate("/course");
   };
 
   return (
@@ -64,13 +38,18 @@ const BeginnerCoursesTabsNow = () => {
           <button
             onClick={nextSlide}
             className="border-[#E6E8EC] w-[40px] h-[40px] border-1 rounded-full flex items-center justify-center"
-            disabled={currentIndex === courses.length - maxVisible}
+            disabled={
+              currentIndex === IMPROVE_SKILLS_COURSES_LIST.length - maxVisible
+            }
           >
             <img src="/Right arrow.svg" alt="Scroll right" />
           </button>
         </div>
         <div className="flex gap-4 overflow-hidden">
-          {courses.slice(currentIndex, currentIndex + maxVisible).map((course, index) => (
+          {IMPROVE_SKILLS_COURSES_LIST.slice(
+            currentIndex,
+            currentIndex + maxVisible
+          ).map((course, index) => (
             <div
               key={index}
               className="bg-white border border-gray-200 rounded-xl p-6 shadow-md flex flex-col w-[300px] md:w-[350px] h-[500px]"
@@ -80,8 +59,12 @@ const BeginnerCoursesTabsNow = () => {
                 alt={course.title}
                 className="w-[250px] h-[250px] object-contain mb-6 mx-auto"
               />
-              <h3 className="text-[18px] font-bold text-left mb-4">{course.title}</h3>
-              <p className="text-[14px] text-gray-600 text-left">{course.description}</p>
+              <h3 className="text-[18px] font-bold text-left mb-4">
+                {course.title}
+              </h3>
+              <p className="text-[14px] text-gray-600 text-left">
+                {course.description}
+              </p>
               <button
                 onClick={handleStartClick} // Добавляем обработчик на кнопку "Начать"
                 className="bg-black text-white px-6 py-2 rounded-full font-bold mt-auto self-start w-40"
@@ -92,10 +75,15 @@ const BeginnerCoursesTabsNow = () => {
           ))}
         </div>
         <div className="flex justify-center mt-4 gap-2 mr-[60px]">
-          {courses.slice(0, courses.length - 2).map((_, index) => (
+          {IMPROVE_SKILLS_COURSES_LIST.slice(
+            0,
+            IMPROVE_SKILLS_COURSES_LIST.length - 2
+          ).map((_, index) => (
             <div
               key={index}
-              className={`w-3 h-3 rounded-full ${currentIndex === index ? 'bg-gray-900' : 'bg-gray-100'}`}
+              className={`w-3 h-3 rounded-full ${
+                currentIndex === index ? "bg-gray-900" : "bg-gray-100"
+              }`}
             ></div>
           ))}
         </div>
@@ -104,4 +92,4 @@ const BeginnerCoursesTabsNow = () => {
   );
 };
 
-export default BeginnerCoursesTabsNow;
+export default ImproveSkillsCoursesList;
