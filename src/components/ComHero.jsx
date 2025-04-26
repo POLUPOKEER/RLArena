@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const ComHero = () => {
   const [isHeartRed, setIsHeartRed] = useState(false);
@@ -18,8 +18,7 @@ const ComHero = () => {
   return (
     <section className="relative w-full flex flex-col items-center py-10 px-4 overflow-hidden">
       {/* Основной контейнер */}
-      <div className="relative flex flex-col md:flex-row items-center md:items-start justify-between w-full max-w-6xl bg-primary shadow-lg rounded-[30px] p-6 md:p-10 mb-12">
-        
+      <div className="relative flex flex-col md:flex-row items-center md:items-start justify-between w-full max-w-6xl bg-primary shadow-lg rounded-[30px] p-6 md:p-10 mb-6">
         {/* Левая часть: Картинка */}
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
           <img
@@ -52,81 +51,47 @@ const ComHero = () => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`w-6 h-6 ${isHeartRed ? 'fill-red-500' : 'fill-white'}`}
+            className={`w-6 h-6 ${isHeartRed ? "fill-red-500" : "fill-white"}`}
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth="2"
           >
-            <path
-              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-            />
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
           </svg>
         </button>
       </div>
 
+      {/* Теги */}
+      <div className="w-full max-w-6xl flex flex-col items-center gap-3 mt-4 md:mt-6 px-4">
+        <span className="text-sm md:text-base lg:text-lg text-black text-center">
+          Теги:
+        </span>
+        <div className="flex flex-wrap justify-center gap-3">
+          {["Симулятор", "Настольные игры", "Обучение с подкреплением"].map(
+            (tag) => (
+              <button
+                key={tag}
+                className="bg-[#2B73B1] text-white px-4 py-2 rounded-full text-sm md:text-base"
+              >
+                {tag}
+              </button>
+            )
+          )}
+        </div>
+      </div>
+
       {/* Декоративные элементы */}
-      <svg
-        width="100"
-        height="100"
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute left-8 top-20 transform -translate-y-1/2 cursor-pointer"
-        onClick={handleBubbleClick}
-      >
-        <circle
-          cx="50"
-          cy="50"
-          r="25"
-          stroke="#2B73B1"
-          strokeWidth="4"
-          fill="none"
-          className={`transition-all duration-300 ${
-            isBubblePopped ? 'scale-140 opacity-0' : 'scale-90 opacity-100'
-          }`}
-        />
-      </svg>
+      {/* Пузыри перемещены выше и левее, чтобы не наползали */}
 
-      <svg
-        width="100"
-        height="100"
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute left-10 top-32 transform -translate-y-1/2 cursor-pointer"
-        onClick={handleBubbleClick}
-      >
-        <circle
-          cx="50"
-          cy="50"
-          r="10"
-          stroke="#2B73B1"
-          strokeWidth="4"
-          fill="none"
-          className={`transition-all duration-300 ${
-            isBubblePopped ? 'scale-150 opacity-0' : 'scale-100 opacity-100'
-          }`}
-        />
-      </svg>
-
-      {/* Поворотное изображение */}
+      {/* Декоративное вращающееся изображение */}
       <img
         src="/Group.svg"
         alt="Decorative ellipse"
-        className={`absolute w-[20%] sm:w-[15%] lg:w-[10%] right-[5%] bottom-[10%] transform ${
-          isRotating ? 'rotate-[15deg]' : 'rotate-[-15deg]'
+        className={`absolute w-[15%] sm:w-[10%] lg:w-[8%] right-[2%] bottom-[15%] transform ${
+          isRotating ? "rotate-[15deg]" : "rotate-[-15deg]"
         } transition-all duration-300`}
         onClick={handleImageClick}
       />
-
-      {/* Теги */}
-      <div className="w-full max-w-6xl flex flex-wrap justify-center md:justify-end space-x-2 mt-8">
-        <span className="text-sm md:text-base lg:text-lg text-black">Теги:</span>
-        {['Симулятор', 'Настольные игры', 'Обучение с подкреплением'].map((tag) => (
-          <button
-            key={tag}
-            className="bg-[#2B73B1] text-white px-4 py-2 rounded-full text-sm md:text-base mt-2 md:mt-0"
-          >
-            {tag}
-          </button>
-        ))}
-      </div>
     </section>
   );
 };
