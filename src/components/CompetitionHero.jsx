@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const CompetitionsHero = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const competitions = [
-    'NFL Big Data Bowl 2025',
-    'Unlock Global with Gemma',
-    'Time Market Data Forecasting',
+    "NFL Big Data Bowl 2025",
+    "Unlock Global with Gemma",
+    "Time Market Data Forecasting",
   ];
 
   const toggleDropdown = () => setIsDropdownVisible((prevState) => !prevState);
@@ -13,9 +13,9 @@ const CompetitionsHero = () => {
   return (
     <div className="relative w-full min-h-[600px] md:h-[726px] bg-primary overflow-hidden flex items-center justify-center">
       {/* Верхний контент (перемещаем немного ниже) */}
-      <div className="absolute top-2 w-full flex justify-center z-30 px-4 md:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-4xl py-4 space-y-4 md:space-y-0">
-          <div className="flex gap-4">
+      <div className="absolute top-2 w-full flex justify-center z-30 px-4">
+        <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-4xl py-4 space-y-4 md:space-y-0 mx-0 lg:mx-40">
+          <div className="flex gap-4 hidden xl:flex">
             <div className="relative">
               <button
                 onClick={toggleDropdown}
@@ -45,15 +45,15 @@ const CompetitionsHero = () => {
               <img src="/Options.svg" alt="Options" className="w-4 h-4" />
             </button>
           </div>
-          <div className="flex items-center border rounded-xl px-3 py-2 bg-white w-full md:w-1/2 lg:w-1/7">
-            <img src="/Search.svg" alt="Options" className="w-4 h-4  mr-2" />
+          <div className="flex items-center border rounded-xl px-3 py-2 bg-white w-full lg:w-1/2">
+            <img src="/Search.svg" alt="Options" className="w-4 h-4 mr-2" />
             <input
               type="text"
               placeholder="Найти соревнование..."
               className="outline-none w-full"
             />
           </div>
-          <button className=" bg-black p-2 rounded-[8px] -ml-12">
+          <button className="hidden lg:flex bg-black p-2 rounded-[8px] -ml-12">
             <svg
               className="w-5 h-5 md:w-6 md:h-6 text-white"
               fill="none"
@@ -63,18 +63,16 @@ const CompetitionsHero = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-               <path d="M4 8h16M7 13h10M10 18h3M14" />
+              <path d="M4 8h16M7 13h10M10 18h3M14" />
             </svg>
           </button>
-          
         </div>
       </div>
 
-
       {/* Центральная фигура (контент на фоне) */}
-      <div className="relative flex flex-col items-center justify-center w-[90%] md:w-[70%] h-[75%] bg-white shadow-lg rounded-[50px] z-20">
-        <div className="md:grid md:grid-cols-2 gap-8 items-center">
-          <div className="flex justify-center items-center md:justify-end overflow-hidden">
+      <div className="relative flex flex-col items-center justify-center md:mx-10 mx-4 lg:mx-40 mb-4 mt-[60px] h-[450px] bg-white shadow-lg rounded-[50px] z-20">
+        <div className="flex lg:grid lg:grid-cols-2 gap-8 items-center p-5">
+          <div className="flex justify-center items-center md:justify-end overflow-hidden hidden lg:block">
             <img
               src="/Group 362.svg"
               alt="Competition illustration"
@@ -82,15 +80,15 @@ const CompetitionsHero = () => {
             />
           </div>
 
-          <div className="space-y-4 md:space-y-6 text-center md:text-left max-w-full">
-            <h1 className="text-[32px] md:text-[48px] lg:text-[64px] leading-tight md:leading-[56px] lg:leading-[72px] font-bold overflow-wrap break-words">
-              Участвуй в соревнованиях <br /> по{' '}
+          <div className="space-y-4 md:space-y-6 text-center text-center lg:text-left max-w-full">
+            <h1 className="text-[32px] lg:text-[40px] xl:text-[54px] leading-tight md:leading-[56px] xl:leading-[72px] font-bold overflow-wrap">
+              Участвуй в соревнованиях <br /> по{" "}
               <span className="text-[#377dff]">машинному обучению</span>
             </h1>
-            <p className="text-[16px] md:text-[18px] leading-[24px] md:leading-[28px] overflow-wrap break-words pr-4">
-              Развивайте свои навыки работы с данными, участвуя в наших увлекательных
-              конкурсах. Обратитесь за помощью к документации или узнайте о соревнованиях
-              сообщества.
+            <p className="text-[16px] md:text-[18px] leading-[24px] md:leading-[28px] overflow-wrap pr-4">
+              Развивайте свои навыки работы с данными, участвуя в наших
+              увлекательных конкурсах. Обратитесь за помощью к документации или
+              узнайте о соревнованиях сообщества.
             </p>
           </div>
         </div>
@@ -111,7 +109,7 @@ const CompetitionsHero = () => {
       <img
         src="/Union (1).svg"
         alt="Decorative shape"
-        className="absolute w-[8%] sm:w-[6%] lg:w-[5%] right-[5%] top-[5%]"
+        className="absolute w-[8%] sm:w-[6%] lg:w-[5%] right-[5%] top-[5%] hidden xl:block"
       />
 
       <svg

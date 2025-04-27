@@ -17,7 +17,7 @@ const CompetitionCard = ({
   };
 
   return (
-    <div className="w-full md:w-[352px] min-h-[262px] border border-[#b1b5c3] rounded-[20px] px-4 md:px-[21px] py-[26px] flex flex-col justify-between gap-[18px]">
+    <div className="w-full min-h-[262px] border border-[#b1b5c3] rounded-[20px] px-4 md:px-[21px] py-[26px] flex flex-col justify-between gap-[18px]">
       <span className="text-[#141416] text-[12px] self-end">
         {start_date} - {end_date}
       </span>
