@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import { Input } from "antd";
+import { SearchOutlined } from '@ant-design/icons';
 const CompetitionsHero = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const competitions = [
@@ -14,14 +15,14 @@ const CompetitionsHero = () => {
     <div className="relative w-full min-h-[600px] md:h-[726px] bg-primary overflow-hidden flex items-center justify-center">
       {/* Верхний контент (перемещаем немного ниже) */}
       <div className="absolute top-2 w-full flex justify-center z-30 px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-4xl py-4 space-y-4 md:space-y-0 mx-0 lg:mx-40">
+        <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-5xl py-4 space-y-4 md:space-y-0 mx-0 lg:mx-40">
           <div className="flex gap-4 hidden xl:flex">
             <div className="relative">
               <button
                 onClick={toggleDropdown}
                 className="flex items-center gap-1 text-[#141416] font-bold"
               >
-                Все курсы
+                Все соревнования
                 <img src="/Options.svg" alt="Options" className="w-4 h-4" />
               </button>
               {isDropdownVisible && (
@@ -45,32 +46,18 @@ const CompetitionsHero = () => {
               <img src="/Options.svg" alt="Options" className="w-4 h-4" />
             </button>
           </div>
-          <div className="flex items-center border rounded-xl px-3 py-2 bg-white w-full lg:w-1/2">
-            <img src="/Search.svg" alt="Options" className="w-4 h-4 mr-2" />
-            <input
-              type="text"
-              placeholder="Найти соревнование..."
-              className="outline-none w-full"
-            />
-          </div>
-          <button className="hidden lg:flex bg-black p-2 rounded-[8px] -ml-12">
-            <svg
-              className="w-5 h-5 md:w-6 md:h-6 text-white"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M4 8h16M7 13h10M10 18h3M14" />
-            </svg>
-          </button>
+          <Input
+            placeholder="Найти соревнование..."
+            addonBefore={<SearchOutlined />}
+            // value={searchQuery}
+            // onChange={handleSearchChange}
+            className="w-full max-w-[500px] lg:w-1/7 px-1 mx-auto"
+          />
         </div>
       </div>
 
       {/* Центральная фигура (контент на фоне) */}
-      <div className="relative flex flex-col items-center justify-center md:mx-10 mx-4 lg:mx-40 mb-4 mt-[60px] h-[450px] bg-white shadow-lg rounded-[50px] z-20">
+      <div className="relative w-[70%] max-w-[1230px] flex flex-col items-center justify-center md:mx-10 mx-4 lg:mx-40 mb-4 mt-[60px] lg:h-[550px] sm: h-[400px] bg-white shadow-lg rounded-[50px] z-20">
         <div className="flex lg:grid lg:grid-cols-2 gap-8 items-center p-5">
           <div className="flex justify-center items-center md:justify-end overflow-hidden hidden lg:block">
             <img
@@ -81,7 +68,7 @@ const CompetitionsHero = () => {
           </div>
 
           <div className="space-y-4 md:space-y-6 text-center text-center lg:text-left max-w-full">
-            <h1 className="text-[32px] lg:text-[40px] xl:text-[54px] leading-tight md:leading-[56px] xl:leading-[72px] font-bold overflow-wrap">
+            <h1 className="text-[clamp(24px,5vw,46px)] xl:text-[clamp(46px,5vw,54px)] leading-[1.2] font-bold">
               Участвуй в соревнованиях <br /> по{" "}
               <span className="text-[#377dff]">машинному обучению</span>
             </h1>

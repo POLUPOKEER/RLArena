@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Competitions from "./components/Competitions";
+import Competitions from "./components/competitions/Competitions-main.jsx";
 import Courses from "./components/Courses";
 import Footer from "./components/Footer";
 import ForWho from "./components/ForWho";
@@ -45,14 +45,6 @@ const App = () => {
         />
         <Route path="/Competitions" element={<CompetitonsPage />} />
         <Route path="/learning" element={<LearningPage />} />
-        <Route
-          path="/forum"
-          element={
-            <>
-              <Footer />
-            </>
-          }
-        />
         <Route
           path="/forum"
           element={

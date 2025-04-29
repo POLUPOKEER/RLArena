@@ -29,7 +29,7 @@ const LearningHero = () => {
     <div className="md:grid md:grid-cols-2 gap-8 items-center flex flex-col-reverse md:flex-row mt-8">
       {/* Левая колонка */}
       <div className="space-y-6 text-center md:text-left max-w-xl mb-5">
-        <h1 className="text-[clamp(24px,5vw,30px)] leading-tight md:text-[clamp(30px,5vw,41px)] lg:text-[clamp(51px,5vw,52px)] lg:leading-[clamp(52px,6vw,84px)]font-bold text-black xl:text-[clamp(52px,5vw,71px)] 2xl:text-[clamp(71px,5vw,84px)]">
+        <h1 className="text-[clamp(24px,7vw,30px)] leading-tight md:text-[clamp(30px,5vw,41px)] lg:text-[clamp(51px,5vw,52px)] lg:leading-[clamp(52px,6vw,84px)]font-bold text-black xl:text-[clamp(52px,5vw,71px)] 2xl:text-[clamp(71px,5vw,84px)]">
           Образовательные курсы <br />
           по <span className="text-[#377dff]">машинному обучению</span>
         </h1>
