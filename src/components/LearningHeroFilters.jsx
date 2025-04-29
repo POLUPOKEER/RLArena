@@ -13,7 +13,7 @@ const LearningHeroFilters = () => {
   };
 
   return (
-    <div className="md:flex flex-row justify-between items-center w-full max-w-4xl md:py-5  mb-6">
+    <div className="md:flex flex-row justify-between items-center w-full max-w-6xl md:py-5  mb-6">
       <div className="hidden md:flex gap-4">
         <ByCourseFilters />
         <ByPopularityFilters />
