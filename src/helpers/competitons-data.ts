@@ -32,7 +32,7 @@ export const competitionsData: competitionType[] = [
     title: "4_I for Good Challenge",
     description:
       "Используйте AI для решения глобальных проблем и выиграйте уникальные призы.",
-    icon: "/ai.png",
+    icon: "/tmd.png",
   },
   {
     start_date: "28.04.2024",
@@ -40,7 +40,7 @@ export const competitionsData: competitionType[] = [
     title: "5_Data Science Hackathon",
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
-    icon: "/hackathon.png",
+    icon: "/tmd.png",
   },
 
   //Соревнования, которые скоро начануться (до старта меньше недели)
@@ -74,7 +74,7 @@ export const competitionsData: competitionType[] = [
     title: "4_I for Good Challenge",
     description:
       "Используйте AI для решения глобальных проблем и выиграйте уникальные призы.",
-    icon: "/ai.png",
+    icon: "/tmd.png",
   },
   {
     start_date: "5.05.2025",
@@ -82,7 +82,7 @@ export const competitionsData: competitionType[] = [
     title: "5_Data Science Hackathon",
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
-    icon: "/hackathon.png",
+    icon: "/nfl.png",
   },
   {
     start_date: "4.05.2025",
@@ -90,7 +90,7 @@ export const competitionsData: competitionType[] = [
     title: "5_Data Science Hackathon",
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
-    icon: "/hackathon.png",
+    icon: "/nfl.png",
   },
   {
     start_date: "3.05.2025",
@@ -98,7 +98,7 @@ export const competitionsData: competitionType[] = [
     title: "5_Data Science Hackathon",
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
-    icon: "/hackathon.png",
+    icon: "/tmd.png",
   },
   {
     start_date: "2.05.2025",
@@ -106,7 +106,7 @@ export const competitionsData: competitionType[] = [
     title: "5_Data Science Hackathon",
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
-    icon: "/hackathon.png",
+    icon: "/gemma.png",
   },
   {
     start_date: "1.05.2025",
@@ -114,7 +114,7 @@ export const competitionsData: competitionType[] = [
     title: "5_Data Science Hackathon",
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
-    icon: "/hackathon.png",
+    icon: "/tmd.png",
   },
   //Соревнования без статуса
   {
