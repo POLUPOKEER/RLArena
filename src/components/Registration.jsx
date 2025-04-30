@@ -26,7 +26,7 @@ const Registration = () => {
       </div>
 
       {/* Правая часть */}
-      <div className="w-1/2 flex flex-col justify-center items-center">
+      <div className="md:w-1/2 flex flex-col justify-center items-center">
         <div className="w-full max-w-sm px-8">
           <h2 className="text-2xl font-semibold mb-4 text-left">Создайте свой аккаунт</h2>
           <p className="mb-6 text-lg text-gray-500 text-left">Это просто и легко</p>

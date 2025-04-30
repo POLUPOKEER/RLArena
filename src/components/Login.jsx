@@ -25,12 +25,12 @@ const Registration = () => {
       </div>
 
       {/* Правая часть */}
-      <div className="w-1/2 flex flex-col justify-center items-center">
+      <div className="md:w-1/2 flex flex-col justify-center items-center">
         <div className="w-full max-w-sm px-8">
           <h2 className="text-2xl font-semibold mb-4 text-left">С возвращением!</h2>
 
           <form onSubmit={handleRegistration}>
-            
+
 
             <div className="mb-4">
               <label className="block text-gray-700 text-sm mb-2" htmlFor="email">
@@ -58,8 +58,8 @@ const Registration = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-                 <button className="text-xs text-gray-400 mt-1 text-right w-full">Забыли пароль</button>
-   
+              <button className="text-xs text-gray-400 mt-1 text-right w-full">Забыли пароль</button>
+
             </div>
 
 
