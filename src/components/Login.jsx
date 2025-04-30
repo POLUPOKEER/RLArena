@@ -1,14 +1,36 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
 
 
 const Registration = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
 
-  const handleRegistration = (e) => {
+  const handleRegistration = async (e) => {
     e.preventDefault();
-    // Добавьте логику для регистрации
+
+    // Валидация полей
+    if (!email || !password) {
+      message.error('Пожалуйста, заполните все поля');
+      return;
+    }
+
+    // Получаем зарегистрированных пользователей
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    
+    // Ищем пользователя
+    const user = users.find(u => u.email === email && u.password === password);
+    
+    if (user) {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      message.success('Авторизация успешна!');
+      navigate('/Main');
+    } else {
+      message.error('Неверный email или пароль');
+    }
   };
 
   return (

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate
 import { parse, isBefore, addDays } from 'date-fns';
+import { Tooltip } from 'antd';
 
 const CompetitionCard = ({
   start_date,
@@ -9,8 +10,10 @@ const CompetitionCard = ({
   icon,
 }) => {
   const navigate = useNavigate(); // Инициализируем navigate
+  const user = JSON.parse(localStorage.getItem('currentUser'));
 
   const handleParticipateClick = () => {
+    if (!user) return; // Если пользователь не авторизован, ничего не происходит при клике
     navigate('/competition'); // Переход на страницу /competition при клике
 
     // Прокручиваем страницу вверх
@@ -36,6 +39,7 @@ const CompetitionCard = ({
   };
 
   const status = getStatus();
+  const isDisabled = !user; // Блокировка кнопки если не авторизован
   return (
     <div className="w-full min-h-[262px] max-w-[500px] border border-[#b1b5c3] rounded-[20px] px-4 md:px-[21px] py-[25px] flex flex-col justify-between gap-[18px] mx-auto">
       <div className='flex justify-between items-center'>
@@ -60,12 +64,14 @@ const CompetitionCard = ({
         </p>
       </div>
       <div className="flex flex-row justify-between items-center">
-        <button
-          onClick={handleParticipateClick} // Добавляем обработчик для кнопки
-          className="py-2 md:py-3 px-4 md:px-6 max-h-[40px] rounded-full bg-[#2b73b1] hover:bg-[#2b73b1]/80 transition-colors text-white text-[12px] md:text-[14px] leading-4 self-end font-bold"
-        >
-          Участвовать
-        </button>
+        <Tooltip title={isDisabled ? "Войдите в аккаунт для участия" : null}>
+          <button
+            onClick={handleParticipateClick} // Добавляем обработчик для кнопки
+            className="py-2 md:py-3 px-4 md:px-6 max-h-[40px] rounded-full bg-[#2b73b1] hover:bg-[#2b73b1]/80 transition-colors text-white text-[12px] md:text-[14px] leading-4 self-end font-bold"
+          >
+            Участвовать
+          </button>
+          </Tooltip>
         <div className="w-[45px] h-[45px] md:w-[57px] md:h-[57px] flex items-center justify-center">
           <img src={icon} alt="" className="max-w-full h-auto" />
         </div>

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { message } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 
 const Registration = () => {
@@ -6,10 +8,53 @@ const Registration = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isAgreed, setIsAgreed] = useState(false);
+  const navigate = useNavigate();
 
   const handleRegistration = (e) => {
     e.preventDefault();
-    // Добавьте логику для регистрации
+
+    // Валидация полей
+    if (!name || !email || !password) {
+      message.error('Пожалуйста, заполните все поля');
+      return;
+    }
+
+    if (password.length < 8) {
+      message.error('Пароль должен содержать минимум 8 символов');
+      return;
+    }
+
+    if (!isAgreed) {
+      message.error('Необходимо согласиться с условиями');
+      return;
+    }
+
+    const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const userExists = existingUsers.some(user => user.email === email);
+    if (userExists) {
+      message.error('Пользователь с таким email уже существует');
+      return;
+    }
+
+    const newUser = {
+      id: Date.now(),
+      name,
+      email,
+      password,
+    };
+
+    const updatedUsers = [...existingUsers, newUser];
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+
+    message.success('Регистрация прошла успешно!');
+
+    setName('');
+    setEmail('');
+    setPassword('');
+    setIsAgreed(false);
+
+    navigate('/Main');
   };
 
   return (
