@@ -45,7 +45,7 @@ export const competitionsData: competitionType[] = [
 
   //Соревнования, которые скоро начануться (до старта меньше недели)
   {
-    start_date: "1.05.2025",
+    start_date: "07.05.2025",
     end_date: "30.05.2025",
     title: "1_NFL Big Data Bowl 2025",
     description:

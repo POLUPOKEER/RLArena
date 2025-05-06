@@ -41,7 +41,7 @@ const CompetitionCard = ({
   const status = getStatus();
   const isDisabled = !user; // Блокировка кнопки если не авторизован
   return (
-    <div className="w-full min-h-[262px] max-w-[500px] border border-[#b1b5c3] rounded-[20px] px-4 md:px-[21px] py-[25px] flex flex-col justify-between gap-[18px] mx-auto">
+    <div className="w-full min-h-[275px] md:min-h-[284px] max-w-[500px] border border-[#b1b5c3] rounded-[20px] px-4 md:px-[21px] py-[25px] flex flex-col justify-between gap-[18px] mx-auto">
       <div className='flex justify-between items-center'>
         <div className="flex-1"> {/* Добавляем контейнер для статуса */}
           {status.text && (
@@ -71,7 +71,7 @@ const CompetitionCard = ({
           >
             Участвовать
           </button>
-          </Tooltip>
+        </Tooltip>
         <div className="w-[45px] h-[45px] md:w-[57px] md:h-[57px] flex items-center justify-center">
           <img src={icon} alt="" className="max-w-full h-auto" />
         </div>
