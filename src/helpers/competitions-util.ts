@@ -1,7 +1,7 @@
 import { parse, isAfter, isBefore, isWithinInterval, addDays } from 'date-fns';
 
-type isCompetitionValidoption = 'both' | 'active' | 'near';
-export const isCompetitionValid = (comp, option: isCompetitionValidoption): boolean | undefined => {
+export type CompetitionsCategory = 'both' | 'now' | 'near';
+export const isCompetitionValid = (comp, option: CompetitionsCategory): boolean | undefined => {
     try {
         const now = new Date();
         const startDate = parse(comp.start_date, 'dd.MM.yyyy', new Date());
@@ -14,7 +14,7 @@ export const isCompetitionValid = (comp, option: isCompetitionValidoption): bool
         if (option == 'both') {
             return (isStarted || startsWithinWeek) && isNotEnded;
         }
-        else if (option == 'active') {
+        else if (option == 'now') {
             return isStarted && isNotEnded;
         }
         else if (option == 'near') {

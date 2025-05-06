@@ -12,6 +12,7 @@ const CompetitionList = () => {
   };
 
   const visibleCompetitions = competitionsData.slice(0, visibleCount);
+  console.log(visibleCompetitions);
 
   return (
     <div className="flex flex-col items-center py-8 px-4 md:px-8 lg:px-[100px] xl:px-[160px]">

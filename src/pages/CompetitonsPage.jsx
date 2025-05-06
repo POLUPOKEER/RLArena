@@ -1,16 +1,14 @@
 import CompetitionHero from "../components/competitions/CompetitionHero.jsx";
-import CompetitionNow from "../components/competitions/Competitions-now.jsx";
-import СompetitionNear from "../components/competitions/Competitions-near.jsx";
 import CompetitionList from "../components/competitions/CompetitionList.jsx";
 import Footer from "../components/Footer.jsx";
-
+import { Competitions } from "../components/competitions/Competition-active.tsx";
 
 const CompetitonsPage = () => {
   return (
     <>
       <CompetitionHero />
-      <CompetitionNow />
-      <СompetitionNear />
+      <Competitions category={'now'} />
+      <Competitions category={'near'} />
       <CompetitionList />
       <Footer />
     </>
