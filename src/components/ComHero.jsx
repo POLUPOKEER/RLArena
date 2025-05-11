@@ -2,18 +2,8 @@ import { useState } from "react";
 
 const ComHero = () => {
   const [isHeartRed, setIsHeartRed] = useState(false);
-  const [isBubblePopped, setIsBubblePopped] = useState(false);
-  const [isRotating, setIsRotating] = useState(false);
 
   const toggleHeartColor = () => setIsHeartRed(!isHeartRed);
-  const handleBubbleClick = () => {
-    setIsBubblePopped(true);
-    setTimeout(() => setIsBubblePopped(false), 300);
-  };
-  const handleImageClick = () => {
-    setIsRotating(true);
-    setTimeout(() => setIsRotating(false), 600);
-  };
 
   return (
     <section className="relative w-full flex flex-col items-center py-10 px-4 overflow-hidden">
@@ -84,10 +74,7 @@ const ComHero = () => {
       <img
         src="/Group.svg"
         alt="Decorative ellipse"
-        className={`absolute w-[15%] sm:w-[10%] lg:w-[8%] right-[2%] bottom-[15%] transform ${
-          isRotating ? "rotate-[15deg]" : "rotate-[-15deg]"
-        } transition-all duration-300`}
-        onClick={handleImageClick}
+        className={`absolute w-[15%] sm:w-[10%] lg:w-[8%] right-[2%] bottom-[15%] transform transition-all duration-300`}
       />
     </section>
   );
