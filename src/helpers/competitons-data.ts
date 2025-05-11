@@ -45,7 +45,7 @@ export const competitionsData: competitionType[] = [
 
   //Соревнования, которые скоро начануться (до старта меньше недели)
   {
-    start_date: "07.05.2025",
+    start_date: "11.05.2025",
     end_date: "30.05.2025",
     title: "1_NFL Big Data Bowl 2025",
     description:
@@ -53,7 +53,7 @@ export const competitionsData: competitionType[] = [
     icon: "/nfl.png",
   },
   {
-    start_date: "2.05.2025",
+    start_date: "12.05.2025",
     end_date: "20.07.2025",
     title: "2_Unlock Global with Gemma",
     description:
@@ -61,7 +61,7 @@ export const competitionsData: competitionType[] = [
     icon: "/gemma.png",
   },
   {
-    start_date: "3.05.2025",
+    start_date: "13.05.2025",
     end_date: "30.05.2025",
     title: "3_NFL Big Data Bowl 2025",
     description:
@@ -69,7 +69,7 @@ export const competitionsData: competitionType[] = [
     icon: "/tmd.png",
   },
   {
-    start_date: "4.05.2025",
+    start_date: "14.05.2025",
     end_date: "15.08.2025",
     title: "4_I for Good Challenge",
     description:
@@ -77,7 +77,7 @@ export const competitionsData: competitionType[] = [
     icon: "/tmd.png",
   },
   {
-    start_date: "5.05.2025",
+    start_date: "15.05.2025",
     end_date: "25.09.2025",
     title: "5_Data Science Hackathon",
     description:
