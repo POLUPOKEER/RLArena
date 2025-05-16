@@ -1,16 +1,15 @@
-import LearningHero from "../components/LearningHero";
-import BeginnerCourses from "../components/BeginnerCourses";
-import ImproveSkillsCoursesList from "../components/ImproveSkillsCoursesList";
-import ProfessionalCoursesList from "../components/ProfessionalCoursesList";
+import LearningHero from "../components/courses/LearningHero";
+import Courses from "../components/courses/Courses-active";
+import CoursesList from "../components/courses/CoursesList";
 import Footer from "../components/Footer";
 
 const LearningPage = () => {
   return (
     <>
       <LearningHero />
-      <BeginnerCourses />
-      <ImproveSkillsCoursesList />
-      <ProfessionalCoursesList />
+      <Courses category={'easy'} />
+      <Courses category={'medium'} />
+      <CoursesList />
       <Footer />
     </>
   );

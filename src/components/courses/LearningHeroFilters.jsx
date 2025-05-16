@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ByCourseFilters from "./ByCourseFilters";
-import ByPopularityFilters from "./ByPopularityFilters";
+import ByPopularityFilters from "../ByPopularityFilters";
 import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
@@ -20,7 +20,7 @@ const LearningHeroFilters = () => {
       </div>
       <Input
         placeholder="Найти курс..."
-        addonBefore={<SearchOutlined/>}
+        addonBefore={<SearchOutlined />}
         value={searchQuery}
         onChange={handleSearchChange}
         className="w-full md:w-1/2 lg:w-1/7"

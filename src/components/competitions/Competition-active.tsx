@@ -45,13 +45,13 @@ export const Competitions = ({ category }: CompetitionsProps) => {
           <div className="flex justify-end max-w-5xl mb-4 ml-16">
             <button
               onClick={goToPrev}
-              className="border-[#E6E8EC] w-[40px] h-[40px] border-2 rounded-full flex items-center justify-center mx-2"
+              className="hover:border-[#E6E8EC] w-[40px] h-[40px] hover:border-2 rounded-full flex items-center justify-center mx-2"
             >
               <img src="/Left arrow.svg" alt="Scroll left" />
             </button>
             <button
               onClick={goToNext}
-              className="border-[#E6E8EC] w-[40px] h-[40px] border-1 rounded-full flex items-center justify-center"
+              className="hover:border-[#E6E8EC] w-[40px] h-[40px] hover:border-2 rounded-full flex items-center justify-center"
             >
               <img src="/Right arrow.svg" alt="Scroll right" />
             </button>

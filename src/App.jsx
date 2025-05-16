@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Competitions from "./components/competitions/Competitions-main.jsx";
-import Courses from "./components/Courses";
+import Courses from "./components/courses/Courses-active.jsx";
 import Footer from "./components/Footer";
 import ForWho from "./components/ForWho";
 import Header from "./components/Header";

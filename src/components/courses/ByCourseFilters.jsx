@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { courses } from "../helpers/courses";
-import Dropdown from "./Dropdown";
+import { courses } from "../../helpers/courses-data";
+import Dropdown from "../Dropdown";
 
 const CourseFilters = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
