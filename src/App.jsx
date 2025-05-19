@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Competitions from "./components/Competitions";
-import Courses from "./components/Courses";
+import Competitions from "./components/competitions/Competitions-main.jsx";
+import Courses from "./components/courses/Courses-active.jsx";
 import Footer from "./components/Footer";
 import ForWho from "./components/ForWho";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import News from "./components/News";
+
 import Course from "./components/Course.jsx";
 import "./index.css";
 import TabMenuCourse from "./components/TabMenuCourse.jsx";
@@ -45,14 +46,6 @@ const App = () => {
         />
         <Route path="/Competitions" element={<CompetitonsPage />} />
         <Route path="/learning" element={<LearningPage />} />
-        <Route
-          path="/forum"
-          element={
-            <>
-              <Footer />
-            </>
-          }
-        />
         <Route
           path="/forum"
           element={

@@ -1,14 +1,36 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
 
 
 const Registration = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
 
-  const handleRegistration = (e) => {
+  const handleRegistration = async (e) => {
     e.preventDefault();
-    // Добавьте логику для регистрации
+
+    // Валидация полей
+    if (!email || !password) {
+      message.error('Пожалуйста, заполните все поля');
+      return;
+    }
+
+    // Получаем зарегистрированных пользователей
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    
+    // Ищем пользователя
+    const user = users.find(u => u.email === email && u.password === password);
+    
+    if (user) {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      message.success('Авторизация успешна!');
+      navigate('/Main');
+    } else {
+      message.error('Неверный email или пароль');
+    }
   };
 
   return (
@@ -25,12 +47,12 @@ const Registration = () => {
       </div>
 
       {/* Правая часть */}
-      <div className="w-1/2 flex flex-col justify-center items-center">
+      <div className="md:w-1/2 flex flex-col justify-center items-center">
         <div className="w-full max-w-sm px-8">
           <h2 className="text-2xl font-semibold mb-4 text-left">С возвращением!</h2>
 
           <form onSubmit={handleRegistration}>
-            
+
 
             <div className="mb-4">
               <label className="block text-gray-700 text-sm mb-2" htmlFor="email">
@@ -58,8 +80,8 @@ const Registration = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-                 <button className="text-xs text-gray-400 mt-1 text-right w-full">Забыли пароль</button>
-   
+              <button className="text-xs text-gray-400 mt-1 text-right w-full">Забыли пароль</button>
+
             </div>
 
 

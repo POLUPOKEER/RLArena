@@ -7,6 +7,49 @@
 }
 
 .scrollbar-hide {
-  -ms-overflow-style: none;  
-  scrollbar-width: none; 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Кастомизации каруселей  */
+.courses-carousel .slick-dots,
+.competition-carousel .slick-dots {
+  position: relative;
+  bottom: -24px;
+  /* сдвигаем вниз */
+  display: flex !important;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Сами точки */
+.courses-carousel .slick-dots li,
+.competition-carousel .slick-dots li {
+  height: 10px;
+}
+
+.courses-carousel .slick-dots li.slick-active,
+.competition-carousel .slick-dots li.slick-active {
+  height: 10px;
+  width: 16px;
+}
+
+.courses-carousel .slick-dots li.slick-active::after,
+.competition-carousel .slick-dots li.slick-active::after {
+  display: none;
+}
+
+.courses-carousel .slick-dots li button,
+.competition-carousel .slick-dots li button {
+  background-color: #d1d5db !important;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+
+/* Активная точка */
+.courses-carousel .slick-dots li.slick-active button,
+.competition-carousel .slick-dots li.slick-active button {
+  background-color: #111827 !important;
 }

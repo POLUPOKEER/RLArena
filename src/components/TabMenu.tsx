@@ -1,8 +1,14 @@
-import { useState } from "react";
+import React from "react";
+import { useState, useRef, useEffect } from "react";
+import { Drawer, Button } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
+import { useMediaQuery } from "react-responsive";
 
 const TabMenu = () => {
   const [activeTab, setActiveTab] = useState("overview");
-
+  const [isDrawerVisible, setDrawerVisible] = useState(false);
+  const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
+  const tabRef = useRef<HTMLDivElement | null>(null);
   const tabs = [
     { id: "overview", label: "Обзор" },
     { id: "data", label: "Данные" },
@@ -12,6 +18,12 @@ const TabMenu = () => {
     { id: "forum", label: "Форум" },
     { id: "rules", label: "Правила" },
   ];
+
+  useEffect(() => {
+    if (isDrawerVisible && tabRef.current) {
+      tabRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isDrawerVisible]);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -209,28 +221,70 @@ const TabMenu = () => {
   };
 
   return (
-    <div className="w-full bg-white flex flex-col items-center min-h-[450px] mt-8">
-      {/* Меню вкладок */}
-      <div className="w-full max-w-6xl overflow-x-auto scrollbar-hide">
-        <div className="flex ml-4 lg:space-x-12 px-4 md:px-0 flex-col lg:flex-row items-start lg:items-center">
+    <div ref={tabRef} className="w-full bg-white flex flex-col lg:items-center items-start min-h-[450px] pt-8">
+      {/* Кнопка меню на мобильных */}
+      {isMobile && (
+        <div className="w-full px-6 mb-4">
+          <Button
+            icon={<MenuOutlined />}
+            onClick={() => {
+              setDrawerVisible(true)
+            }}
+            className="bg-gray-600 text-white"
+          >
+            Меню
+          </Button>
+        </div>
+      )}
+
+      {/* Меню вкладок (десктоп) */}
+      {!isMobile && (
+        <div className="pt-1 max-w-6xl scrollbar-hide w-full">
+          <div className="flex ml-4 items-start space-x-12 px-0 flex-col lg:flex-row lg:items-center">
+            {tabs.map((tab) => (
+              <span
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`text-base md:text-lg font-semibold cursor-pointer transition-all border-b-2 ${activeTab === tab.id
+                  ? "border-slate-600 text-slate-900"
+                  : "border-transparent text-gray-500 hover:text-slate-700"
+                  } pb-2`}
+              >
+                {tab.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Drawer меню (мобильные) */}
+      <Drawer
+        title="Меню"
+        placement="left"
+        onClose={() => setDrawerVisible(false)}
+        open={isDrawerVisible}
+      >
+        <div className="flex flex-col space-y-4">
           {tabs.map((tab) => (
             <span
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`text-base md:text-lg font-semibold cursor-pointer transition-all border-b-2 ${
-                activeTab === tab.id
-                  ? "border-slate-600 text-slate-900"
-                  : "border-transparent text-gray-500 hover:text-slate-700"
-              } pb-2`}
+              onClick={() => {
+                setActiveTab(tab.id);
+                setDrawerVisible(false);
+              }}
+              className={`text-base font-semibold cursor-pointer ${activeTab === tab.id
+                ? "text-blue-600"
+                : "text-gray-700 hover:text-blue-500"
+                }`}
             >
               {tab.label}
             </span>
           ))}
         </div>
-      </div>
+      </Drawer>
 
       {/* Контент вкладки */}
-      <div className="w-full max-w-5xl bg-white px-6 md:px-8 py-8">
+      <div className="w-full max-w-5xl bg-white px-6 md:px-8 lg:mt-8">
         {renderContent()}
       </div>
     </div>
