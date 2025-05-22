@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Popconfirm, message } from 'antd';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,18 +34,26 @@ const Header = () => {
   };
 
   return (
-    <nav className="relative flex flex-row w-full h-[92px] bg-[#fcfcfd] items-center text-[#777e90] font-bold px-4 md:px-10 2xl:px-40 gap-8 justify-between border-b border-[#e6e8ec]">
-      <div className="flex items-center gap-8 flex-shrink-0 ">
-        <div id="logo" className="h-[52px] flex-shrink-0">
-          <Link to="/Main">
-            <img
-              src="/logo.svg"
-              alt="Logo"
-              className="w-full h-full object-contain cursor-pointer "
-            />
-          </Link>
+    <nav className="relative flex flex-row w-full h-[92px] bg-[#fcfcfd] items-center text-[#777e90] font-bold pr-4 md:px-10 2xl:px-40 gap-8 justify-between border-b border-[#e6e8ec]">
+      <Tooltip
+        title="На главную"
+        placement="bottom"
+        color="#2c3e50"
+        trigger="hover"
+        mouseEnterDelay={0.3}
+      >
+        <div className="mx-[20px] w-[100px] bg-gray-100 border border-gray-300 rounded-lg py-[7px] transition-all hover:bg-gray-200 active:bg-gray-300 active:scale-95">
+          <div id="logo" className="w-[24px] h-[23px] flex-shrink-0 mx-auto">
+            <Link to="/Main">
+              <img
+                src="/logo2.svg"
+                alt="Logo"
+                className="w-full h-full object-contain cursor-pointer hover:opacity-80 active:opacity-60 transition-opacity"
+              />
+            </Link>
+          </div>
         </div>
-      </div>
+      </Tooltip>
 
       {/* меню для dekstop */}
       <div id="menu" className="hidden md:flex flex-row gap-8 flex-1">
@@ -93,8 +102,8 @@ const Header = () => {
                 placement="bottomRight"
               >
                 <div className="w-[40px] h-[40px] flex-shrink-0 bg-[#e6e8ec] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#d1d3d7] transition-colors">
-                   <LogoutOutlined style={{ fontSize: '18px', color: '#777e90' }} />
-                 </div>
+                  <LogoutOutlined style={{ fontSize: '18px', color: '#777e90' }} />
+                </div>
               </Popconfirm>
             ) : (
               <Link to="/Login">
@@ -143,8 +152,8 @@ const Header = () => {
                   </div>
                 </Popconfirm>
               ) : (
-                <Link to="/Login" 
-                  className="px-4 py-3 hover:bg-gray-100 border-b border-[#e6e8ec] text-[#777e90] font-bold" 
+                <Link to="/Login"
+                  className="px-4 py-3 hover:bg-gray-100 border-b border-[#e6e8ec] text-[#777e90] font-bold"
                   onClick={() => setIsMenuOpen(false)}>
                   <span>Войти</span>
                 </Link>

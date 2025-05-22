@@ -1,15 +1,39 @@
-import { useState } from "react";
-import { Input } from "antd";
-import { SearchOutlined } from '@ant-design/icons';
+import { Dropdown, Menu, Button, Input, MenuProps } from 'antd';
+import { DownOutlined, SearchOutlined } from '@ant-design/icons';
+import { useMemo } from 'react';
+import { FilterValue, useFilterContext } from '../../pages/CompetitonsPage';
+
 const CompetitionsHero = () => {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const { filterValue, setFilterValue } = useFilterContext();
+
   const competitions = [
-    "NFL Big Data Bowl 2025",
-    "Unlock Global with Gemma",
-    "Time Market Data Forecasting",
+    { label: "Все соревнования", value: 'none' },
+    { label: "Для новичков", value: 'beginner' },
+    { label: "Для опытных пользователей", value: 'midlle' },
+    { label: "Профессионалам", value: 'professional' },
   ];
 
-  const toggleDropdown = () => setIsDropdownVisible((prevState) => !prevState);
+  const currentLabel = useMemo(() => {
+    return competitions.find(item => item.value === filterValue)?.label || "Выбрать";
+  }, [filterValue]);
+
+  const items: MenuProps['items'] = competitions.map((item, index) => ({
+    key: String(index),
+    label: (
+      <span
+        className={`
+          px-4 py-2 rounded-md cursor-pointer transition-colors
+          ${filterValue === item.value
+            ? 'text-blue-600 font-semibold bg-gray-100'
+            : 'text-gray-800'}
+          hover:bg-blue-100 hover:text-blue-700
+        `}
+      >
+        {item.label}
+      </span>
+    ),
+    onClick: () => setFilterValue(item.value as FilterValue),
+  }));
 
   return (
     <div className="relative w-full min-h-[600px] md:h-[726px] bg-primary overflow-hidden flex items-center justify-center">
@@ -17,34 +41,30 @@ const CompetitionsHero = () => {
       <div className="absolute top-2 w-full flex justify-center z-30 px-4">
         <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-5xl py-4 space-y-4 md:space-y-0 mx-0 lg:mx-40">
           <div className="flex gap-4 hidden xl:flex">
-            <div className="relative">
-              <button
-                onClick={toggleDropdown}
-                className="flex items-center gap-1 text-[#141416] font-bold"
+            <Dropdown menu={{ items }} trigger={['click']} className='min-w-[304px]'>
+              <Button
+                type="text"
+                className={`
+                  font-semibold text-lg px-4 py-2 text-[#141416] rounded-md
+                  hover:text-blue-600 hover:border-blue-500 transition-all flex items-center gap-2
+                `}
               >
-                Все соревнования
-                <img src="/Options.svg" alt="Options" className="w-4 h-4" />
-              </button>
-              {isDropdownVisible && (
-                <div className="absolute mt-2 bg-white shadow-lg rounded-lg w-48">
-                  <ul className="p-2">
-                    {competitions.map((course, index) => (
-                      <li
-                        key={index}
-                        className="py-2 px-4 hover:bg-gray-100 cursor-pointer border-b last:border-none"
-                      >
-                        {course}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-            <button className="flex items-center gap-2 text-[#141416] font-bold">
-              <span>★</span>
-              Самые популярные
-              <img src="/Options.svg" alt="Options" className="w-4 h-4" />
-            </button>
+                {currentLabel} <img src="/Options.svg" alt="Options" className="w-4 h-4" />
+              </Button>
+            </Dropdown>
+            <Dropdown>
+              <Button
+                disabled
+                type="text"
+                className={`
+                  font-semibold text-lg px-4 py-2 text-[#141416] rounded-md
+                  hover:text-blue-600 hover:border-blue-500 transition-all flex items-center gap-2
+                `}
+              >
+                <span>★</span>
+                Самые популярные
+              </Button>
+            </Dropdown>
           </div>
           <Input
             placeholder="Найти соревнование..."

@@ -1,30 +1,36 @@
 import { parse, isAfter, isBefore, isWithinInterval, addDays } from 'date-fns';
+import { FilterValue } from '../pages/CompetitonsPage';
+import { competitionType } from './competitons-data';
 
 export type CompetitionsCategory = 'both' | 'now' | 'near';
-export const isCompetitionValid = (comp, option: CompetitionsCategory): boolean | undefined => {
-    try {
-        const now = new Date();
-        const startDate = parse(comp.start_date, 'dd.MM.yyyy', new Date());
-        const endDate = parse(comp.end_date, 'dd.MM.yyyy', new Date());
+export const isCompetitionValid = (comp: competitionType, option: CompetitionsCategory, filterValue: FilterValue): boolean | undefined => {
+    console.log(filterValue, comp.categoty);
+    if (filterValue === comp.categoty || filterValue === 'none') {
+        try {
+            const now = new Date();
+            const startDate = parse(comp.start_date, 'dd.MM.yyyy', new Date());
+            const endDate = parse(comp.end_date, 'dd.MM.yyyy', new Date());
 
-        const isStarted = isBefore(startDate, now) || isWithinInterval(now, { start: startDate, end: startDate });
-        const startsWithinWeek = isAfter(startDate, now) && isBefore(startDate, addDays(now, 7));
-        const isNotEnded = isBefore(now, endDate) || isWithinInterval(now, { start: endDate, end: endDate });
+            const isStarted = isBefore(startDate, now) || isWithinInterval(now, { start: startDate, end: startDate });
+            const startsWithinWeek = isAfter(startDate, now) && isBefore(startDate, addDays(now, 7));
+            const isNotEnded = isBefore(now, endDate) || isWithinInterval(now, { start: endDate, end: endDate });
 
-        if (option == 'both') {
-            return (isStarted || startsWithinWeek) && isNotEnded;
-        }
-        else if (option == 'now') {
-            return isStarted && isNotEnded;
-        }
-        else if (option == 'near') {
-            return startsWithinWeek && isNotEnded;;
-        }
+            if (option == 'both') {
+                return (isStarted || startsWithinWeek) && isNotEnded;
+            }
+            else if (option == 'now') {
+                return isStarted && isNotEnded;
+            }
+            else if (option == 'near') {
+                return startsWithinWeek && isNotEnded;;
+            }
 
-    } catch (error) {
-        console.error('Error processing competition:', comp, error);
-        return false;
+        } catch (error) {
+            console.error('Error processing competition:', comp, error);
+            return false;
+        }
     }
+    return false
 };
 export const competitionSort = (a, b): number => {
     try {

@@ -1,4 +1,4 @@
-export type competitionType = Record<'start_date' | 'end_date' | 'title' | 'description' | 'icon', string>;
+export type competitionType = Record<'start_date' | 'end_date' | 'title' | 'description' | 'icon' | 'categoty', string>;
 
 export const competitionsData: competitionType[] = [
   //Соревнования, уоторые уже идут
@@ -9,6 +9,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Помогите использовать поведение перед привязкой для прогнозирования и лучшего понимания тенденций команды и игроков НФЛ",
     icon: "/nfl.png",
+    categoty: "beginner"
   },
   {
     start_date: "10.01.2024",
@@ -17,6 +18,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Создайте варианты моделей Gemma для конкретного языка или уникального культурного аспекта",
     icon: "/gemma.png",
+    categoty: "midlle"
   },
   {
     start_date: "12.12.2024",
@@ -25,6 +27,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Помогите использовать поведение перед привязкой для прогнозирования и лучшего понимания тенденций команды и игроков НФЛ",
     icon: "/tmd.png",
+    categoty: "professional"
   },
   {
     start_date: "28.04.2024",
@@ -33,6 +36,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Используйте AI для решения глобальных проблем и выиграйте уникальные призы.",
     icon: "/tmd.png",
+    categoty: "professional"
   },
   {
     start_date: "28.04.2024",
@@ -41,6 +45,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/tmd.png",
+    categoty: "midlle"
   },
 
   //Соревнования, которые скоро начануться (до старта меньше недели)
@@ -51,6 +56,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Помогите использовать поведение перед привязкой для прогнозирования и лучшего понимания тенденций команды и игроков НФЛ",
     icon: "/nfl.png",
+    categoty: "beginner"
   },
   {
     start_date: "12.05.2025",
@@ -59,6 +65,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Создайте варианты моделей Gemma для конкретного языка или уникального культурного аспекта",
     icon: "/gemma.png",
+    categoty: "midlle"
   },
   {
     start_date: "13.05.2025",
@@ -67,6 +74,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Помогите использовать поведение перед привязкой для прогнозирования и лучшего понимания тенденций команды и игроков НФЛ",
     icon: "/tmd.png",
+    categoty: "beginner"
   },
   {
     start_date: "14.05.2025",
@@ -75,6 +83,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Используйте AI для решения глобальных проблем и выиграйте уникальные призы.",
     icon: "/tmd.png",
+    categoty: "beginner"
   },
   {
     start_date: "15.05.2025",
@@ -83,6 +92,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/nfl.png",
+    categoty: "midlle"
   },
   {
     start_date: "4.05.2025",
@@ -91,6 +101,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/nfl.png",
+    categoty: "professional"
   },
   {
     start_date: "3.05.2025",
@@ -99,6 +110,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/tmd.png",
+    categoty: "beginner"
   },
   {
     start_date: "2.05.2025",
@@ -107,6 +119,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/gemma.png",
+    categoty: "professional"
   },
   {
     start_date: "1.05.2025",
@@ -115,6 +128,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/tmd.png",
+    categoty: "midlle"
   },
   //Соревнования без статуса
   {
@@ -124,6 +138,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/hackathon.png",
+    categoty: "professional"
   },
   {
     start_date: "8.08.2025",
@@ -132,6 +147,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/hackathon.png",
+    categoty: "midlle"
   },
   {
     start_date: "7.07.2025",
@@ -140,6 +156,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/hackathon.png",
+    categoty: "professional"
   },
   //Завершившиеся соревнование 
   {
@@ -149,5 +166,6 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/hackathon.png",
+    categoty: "midlle"
   },
 ];

@@ -3,6 +3,7 @@ import CompetitionCard from './CompetitionCard';
 import { competitionsData } from '../../helpers/competitons-data';
 import { isCompetitionValid } from '../../helpers/competitions-util';
 import { competitionSort } from '../../helpers/competitions-util';
+import { useMemo } from 'react';
 
 const Competitions = () => {
   const navigate = useNavigate();
@@ -11,6 +12,13 @@ const Competitions = () => {
     navigate('/competitions');
   };
 
+  let validCompetions = competitionsData;
+  useMemo(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    validCompetions = competitionsData.sort((a, b) => competitionSort(a, b))
+      .filter(comp => isCompetitionValid(comp, 'both')).slice(0, 3)
+    console.log(validCompetions)
+  }, [competitionsData])
 
 
   return (
@@ -18,28 +26,38 @@ const Competitions = () => {
       <h1 className="text-[32px] md:text-[48px] font-bold text-center">
         Актуальные соревнования
       </h1>
-      <button
-        className="border-[#E6E8EC] w-[40px] h-[40px] border-2 rounded-full flex items-center justify-center self-end"
-        onClick={handleButtonClick}
-      >
-        <img src="/arrow.svg" alt="Go to competitions page" />
-      </button>
-      <div className="flex flex-col md:flex-row gap-4 overflow-x-auto">
-        {competitionsData
-          .sort((a, b) => competitionSort(a, b))
-          .filter(comp => isCompetitionValid(comp, 'both')).slice(0, 3)
-          .map((comp, index) => (
-            <CompetitionCard
-              key={index}
-              start_date={comp.start_date}
-              end_date={comp.end_date}
-              title={comp.title}
-              description={comp.description}
-              icon={comp.icon}
-            />
-          ))
-        }
-      </div>
+      {
+        validCompetions ?
+          <>
+            <button
+              className="border-[#E6E8EC] w-[40px] h-[40px] border-2 rounded-full flex items-center justify-center self-end"
+              onClick={handleButtonClick}
+            >
+              <img src="/arrow.svg" alt="Go to competitions page" />
+            </button>
+            <div className="flex flex-col md:flex-row gap-4 overflow-x-auto">
+              {validCompetions
+                .map((comp, index) => (
+                  <CompetitionCard
+                    key={index}
+                    start_date={comp.start_date}
+                    end_date={comp.end_date}
+                    title={comp.title}
+                    description={comp.description}
+                    icon={comp.icon}
+                  />
+                ))
+              }
+            </div>
+          </> :
+          <div className="flex flex-col items-center justify-center space-y-2">
+            <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p className="text-gray-500 text-xl font-medium">Нет Актуальных соревнований</p>
+          </div>
+      }
+
     </div>
   );
 };

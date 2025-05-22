@@ -8,6 +8,7 @@ const CompetitionCard = ({
   title,
   description,
   icon,
+  category
 }) => {
   const navigate = useNavigate(); // Инициализируем navigate
   const user = JSON.parse(localStorage.getItem('currentUser'));
@@ -41,7 +42,7 @@ const CompetitionCard = ({
   const status = getStatus();
   const isDisabled = !user; // Блокировка кнопки если не авторизован
   return (
-    <div className="w-full min-h-[275px] md:min-h-[284px] max-w-[500px] border border-[#b1b5c3] rounded-[20px] px-4 md:px-[21px] py-[25px] flex flex-col justify-between gap-[18px] mx-auto">
+    <div className="w-full min-h-[285px] md:min-h-[310px] max-w-[500px] border border-[#b1b5c3] rounded-[20px] px-4 md:px-[21px] py-[25px] flex flex-col justify-between gap-[18px] mx-auto">
       <div className='flex justify-between items-center'>
         <div className="flex-1"> {/* Добавляем контейнер для статуса */}
           {status.text && (
@@ -61,6 +62,9 @@ const CompetitionCard = ({
         </h1>
         <p className="text-[#141416] text-[12px] leading-5 max-w-full md:max-w-[249px]">
           {description}
+        </p>
+        <p className='text-red-500'>
+          {category}
         </p>
       </div>
       <div className="flex flex-row justify-between items-center">
