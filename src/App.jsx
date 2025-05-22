@@ -15,7 +15,7 @@ import Login from "./components/Login.jsx";
 import FAQpage from "./pages/FAQpage.jsx";
 import LearningPage from "./pages/LearningPage.jsx";
 import CompetitionPage from "./pages/CompetitionPage.jsx";
-import CompetitonsPage from "./pages/CompetitonsPage.jsx";
+import CompetitonsPage from "./pages/CompetitonsPage.tsx";
 import ContactPage from "./pages/ContactPage.jsx";
 
 const App = () => {
