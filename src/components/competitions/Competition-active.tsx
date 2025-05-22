@@ -7,6 +7,8 @@ import { isCompetitionValid, competitionSort } from '../../helpers/competitions-
 import { CompetitionsCategory } from '../../helpers/competitions-util';
 import { competitionType } from '../../helpers/competitons-data';
 import { useFilterContext } from '../../pages/CompetitonsPage';
+import { contestDetails, contestSummary } from '../../helpers/competion-api-type';
+import { getCompetitionGeneral } from '../../helpers/competitions-util';
 
 type CompetitionsProps = {
   category: CompetitionsCategory;
@@ -16,21 +18,48 @@ export const Competitions = ({ category }: CompetitionsProps) => {
   const { filterValue, setFilterValue } = useFilterContext();
   const [slides, setSlides] = useState<competitionType[][]>([]);
   const carouselRef = useRef<any>(null);
+  const [competitions, setCompetitions] = useState<competitionType[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const filtered = competitionsData
+    const fetchContests = async () => {
+      try {
+        const res = await fetch('http://localhost/api/v1/contests');
+        const summaryList = await res.json();
+
+        const detailsPromises = summaryList.map(async (summary) => {
+          const detailsRes = await fetch(`http://localhost/api/v1/contests/${summary.slug}`);
+          const details = await detailsRes.json() as contestDetails;
+          return getCompetitionGeneral(summary, details);
+        });
+        const newCompetitions = await Promise.all(detailsPromises);
+
+        setCompetitions([...newCompetitions, ...competitionsData]);
+      } catch (error) {
+        console.error('Ошибка загрузки соревнований', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchContests();
+
+  }, [loading]);
+
+  useEffect(() => {
+    const filtered = competitions
       .filter(comp => isCompetitionValid(comp, category, filterValue))
       .sort((a, b) => competitionSort(a, b));
 
     const chunkSize = 3;
-    console.log('fdfdf');
+    // console.log('fdfdf');
     const chunks: competitionType[][] = [];
     for (let i = 0; i < filtered.length; i += chunkSize) {
       chunks.push(filtered.slice(i, i + chunkSize));
     }
     setSlides(chunks);
-    console.log(filterValue, slides)
-  }, [category, filterValue]);
+    // console.log(filterValue, slides)
+  }, [category, filterValue, competitions]);
 
   const goToPrev = () => carouselRef.current?.prev();
   const goToNext = () => carouselRef.current?.next();
