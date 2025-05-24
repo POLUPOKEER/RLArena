@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Competitions from "./components/competitions/Competitions-main.jsx";
 import Courses from "./components/courses/Courses-active.jsx";
-import Footer from "./components/Footer";
-import ForWho from "./components/ForWho";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import News from "./components/News";
+import Footer from "./components/Footer.jsx";
+import ForWho from "./components/ForWho.jsx";
+import Header from "./components/Header.jsx";
+import Hero from "./components/Hero.jsx";
+import News from "./components/News.jsx";
 
 import Course from "./components/Course.jsx";
 import "./index.css";
@@ -17,6 +17,10 @@ import LearningPage from "./pages/LearningPage.jsx";
 import CompetitionPage from "./pages/CompetitionPage.jsx";
 import CompetitonsPage from "./pages/CompetitonsPage.tsx";
 import ContactPage from "./pages/ContactPage.jsx";
+import { competitionType } from "./helpers/competitons-data.ts";
+import { createContext, useEffect, useState } from "react";
+import { fetchContests } from "./helpers/competion-api.ts";
+
 
 const App = () => {
   return (
@@ -38,7 +42,7 @@ const App = () => {
               <Hero />
               <ForWho />
               <Competitions />
-              <Courses />
+              <Courses category={undefined} />
               <News />
               <Footer />
             </>

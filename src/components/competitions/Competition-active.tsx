@@ -7,44 +7,16 @@ import { isCompetitionValid, competitionSort } from '../../helpers/competitions-
 import { CompetitionsCategory } from '../../helpers/competitions-util';
 import { competitionType } from '../../helpers/competitons-data';
 import { useFilterContext } from '../../pages/CompetitonsPage';
-import { contestDetails, contestSummary } from '../../helpers/competion-api-type';
-import { getCompetitionGeneral } from '../../helpers/competitions-util';
+import { contestDetails, contestSummary, fetchContests } from '../../helpers/competion-api';
 
 type CompetitionsProps = {
   category: CompetitionsCategory;
 };
 
-export const Competitions = ({ category }: CompetitionsProps) => {
-  const { filterValue, setFilterValue } = useFilterContext();
+export const Competitions = ({ category }: { category: CompetitionsCategory }) => {
+  const { filterValue, competitions, loading } = useFilterContext();
   const [slides, setSlides] = useState<competitionType[][]>([]);
   const carouselRef = useRef<any>(null);
-  const [competitions, setCompetitions] = useState<competitionType[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchContests = async () => {
-      try {
-        const res = await fetch('http://localhost/api/v1/contests');
-        const summaryList = await res.json();
-
-        const detailsPromises = summaryList.map(async (summary) => {
-          const detailsRes = await fetch(`http://localhost/api/v1/contests/${summary.slug}`);
-          const details = await detailsRes.json() as contestDetails;
-          return getCompetitionGeneral(summary, details);
-        });
-        const newCompetitions = await Promise.all(detailsPromises);
-
-        setCompetitions([...newCompetitions, ...competitionsData]);
-      } catch (error) {
-        console.error('Ошибка загрузки соревнований', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchContests();
-
-  }, [loading]);
 
   useEffect(() => {
     const filtered = competitions
@@ -52,17 +24,17 @@ export const Competitions = ({ category }: CompetitionsProps) => {
       .sort((a, b) => competitionSort(a, b));
 
     const chunkSize = 3;
-    // console.log('fdfdf');
     const chunks: competitionType[][] = [];
     for (let i = 0; i < filtered.length; i += chunkSize) {
       chunks.push(filtered.slice(i, i + chunkSize));
     }
     setSlides(chunks);
-    // console.log(filterValue, slides)
   }, [category, filterValue, competitions]);
 
   const goToPrev = () => carouselRef.current?.prev();
   const goToNext = () => carouselRef.current?.next();
+
+  if (loading) return <div className="text-center py-10">Загрузка...</div>;
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 px-4 md:px-8 lg:px-[100px] xl:px-[160px] py-8">
