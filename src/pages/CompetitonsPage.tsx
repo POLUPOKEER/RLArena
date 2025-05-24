@@ -2,22 +2,33 @@ import CompetitionHero from "../components/competitions/CompetitionHero.jsx";
 import CompetitionList from "../components/competitions/CompetitionList.jsx";
 import Footer from "../components/Footer.jsx";
 import { Competitions } from "../components/competitions/Competition-active.tsx";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { filter } from "framer-motion/client";
+import { competitionType } from "../helpers/competitons-data.ts";
+import { fetchContests } from "../helpers/competion-api.ts";
 
 export type FilterValue = 'none' | 'beginner' | 'midlle' | 'professional' | undefined;
 
 interface FilterContextValue {
   filterValue: FilterValue;
   setFilterValue: (value: FilterValue) => void;
+  competitions: competitionType[];
+  loading: boolean;
 }
+
 export const FilterContext = createContext<FilterContextValue | undefined>(undefined);
 
 export const FilterProvider = ({ children }: { children: React.ReactNode }) => {
   const [filterValue, setFilterValue] = useState<FilterValue>('none');
+  const [competitions, setCompetitions] = useState<competitionType[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchContests(setCompetitions, setLoading);
+  }, []);
 
   return (
-    <FilterContext.Provider value={{ filterValue, setFilterValue }}>
+    <FilterContext.Provider value={{ filterValue, setFilterValue, competitions, loading }}>
       {children}
     </FilterContext.Provider>
   );

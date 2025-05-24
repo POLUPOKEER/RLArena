@@ -8,7 +8,8 @@ const CompetitionCard = ({
   title,
   description,
   icon,
-  category
+  category,
+  author
 }) => {
   const navigate = useNavigate(); // Инициализируем navigate
   const user = JSON.parse(localStorage.getItem('currentUser'));
@@ -70,14 +71,30 @@ const CompetitionCard = ({
       <div className="flex flex-row justify-between items-center">
         <Tooltip title={isDisabled ? "Войдите в аккаунт для участия" : null}>
           <button
-            onClick={handleParticipateClick} // Добавляем обработчик для кнопки
-            className="py-2 md:py-3 px-4 md:px-6 max-h-[40px] rounded-full bg-[#2b73b1] hover:bg-[#2b73b1]/80 transition-colors text-white text-[12px] md:text-[14px] leading-4 self-end font-bold"
+            disabled={isDisabled}
+            onClick={handleParticipateClick}
+            className={`
+    py-2 md:py-3 px-4 my-[auto] md:px-6 max-h-[40px] rounded-full
+    bg-[#2b73b1] hover:bg-[#2b73b1]/80
+    transition-colors duration-200
+    text-white text-[12px] md:text-[14px] leading-4
+    self-end font-bold
+    ${isDisabled
+                ? "opacity-60 cursor-not-allowed bg-gray-400 hover:bg-gray-400"
+                : "cursor-pointer hover:bg-[#2b73b1]/80"
+              }
+  `}
           >
             Участвовать
           </button>
         </Tooltip>
-        <div className="w-[45px] h-[45px] md:w-[57px] md:h-[57px] flex items-center justify-center">
-          <img src={icon} alt="" className="max-w-full h-auto" />
+
+        {/* Блок с автором и иконкой */}
+        <div className="w-[100px] h-[45px] md:w-[120px] md:h-[57px] flex items-center justify-end rounded-full bg-gray-100 overflow-hidden ml-auto pr-3">
+          <div className="flex items-center gap-1 text-xs md:text-sm font-semibold text-gray-800">
+            <span className="truncate">{author}</span>
+            <img src={icon} alt="icon" className="w-5 h-5 md:w-6 md:h-6 object-contain" />
+          </div>
         </div>
       </div>
     </div>

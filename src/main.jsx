@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import 'antd/dist/reset.css';
 import './index.css';
-import App from "./App.jsx";
+import App from "./App.tsx";
 
 createRoot(document.getElementById("root")).render(<App />);
 // fetch('http://localhost/api/v1/contests/titanic')

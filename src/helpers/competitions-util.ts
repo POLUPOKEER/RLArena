@@ -1,70 +1,77 @@
-import { parse, isAfter, isBefore, isWithinInterval, addDays, parseISO, isValid } from 'date-fns';
+// helpers/competitions-util.ts
+import {
+    isBefore,
+    isAfter,
+    isWithinInterval,
+    addDays,
+    differenceInMilliseconds,
+} from 'date-fns';
+import { parseDateCached } from './date-cache.ts';
 import { FilterValue } from '../pages/CompetitonsPage';
 import { competitionType } from './competitons-data';
-import { Descriptions } from 'antd';
-import { contestDetails, contestSummary } from './competion-api-type';
 
-export type CompetitionsCategory = 'both' | 'now' | 'near';
-export const isCompetitionValid = (comp: competitionType, option: CompetitionsCategory, filterValue: FilterValue): boolean | undefined => {
-    // console.log(filterValue, comp.categoty);
-    if (filterValue === comp.categoty || filterValue === 'none') {
-        try {
-            const now = new Date();
-            const startDate = parse(comp.start_date, 'dd.MM.yyyy', new Date());
-            const endDate = parse(comp.end_date, 'dd.MM.yyyy', new Date());
+export type CompetitionsCategory = 'both' | 'now' | 'near' | 'all';
 
-            const isStarted = isBefore(startDate, now) || isWithinInterval(now, { start: startDate, end: startDate });
-            const startsWithinWeek = isAfter(startDate, now) && isBefore(startDate, addDays(now, 7));
-            const isNotEnded = isBefore(now, endDate) || isWithinInterval(now, { start: endDate, end: endDate });
-
-            // console.log(startDate, comp.title)
-            if (option == 'both') {
-                return (isStarted || startsWithinWeek) && isNotEnded;
-            }
-            else if (option == 'now') {
-                return isStarted && isNotEnded;
-            }
-            else if (option == 'near') {
-                return startsWithinWeek && isNotEnded;;
-            }
-
-        } catch (error) {
-            console.error('Error processing competition:', comp, error);
-            return false;
-        }
+export function isCompetitionValid(
+    comp: competitionType,
+    option: CompetitionsCategory,
+    filterValue: FilterValue
+): boolean {
+    if (filterValue !== 'none' && comp.categoty !== filterValue) {
+        return false;
     }
-    return false
-};
-export const competitionSort = (a, b): number => {
-    try {
-        const dateA = parse(a.end_date, 'dd.MM.yyyy', new Date());
-        const dateB = parse(b.end_date, 'dd.MM.yyyy', new Date());
+    if (option === 'all') return true;
 
-        if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) {
-            console.error('Invalid date format:', a.end_date, b.end_date);
-            return 0;
-        }
+    const now = new Date();
+    const start = parseDateCached(comp.start_date);
+    const end = parseDateCached(comp.end_date);
 
-        return dateA.getTime() - dateB.getTime();
-    } catch (error) {
-        console.error('Error parsing dates:', error);
-        return 0;
+    const isStarted = isBefore(start, now) || isWithinInterval(now, { start, end: start });
+    const startsWithinWeek = isAfter(start, now) && isBefore(start, addDays(now, 7));
+    const isNotEnded = isBefore(now, end) || isWithinInterval(now, { start: end, end });
+
+    switch (option) {
+        case 'both': return (isStarted || startsWithinWeek) && isNotEnded;
+        case 'now': return isStarted && isNotEnded;
+        case 'near': return startsWithinWeek && isNotEnded;
+        default: return false;
     }
-};
+}
 
-export const getCompetitionGeneral = (summary: contestSummary, details: contestDetails): competitionType => {
-    const startDate = `${details.start_date.slice(8, 10)}.${details.start_date.slice(5, 7)}.${details.start_date.slice(0, 4)}`;
-    const endDate = `${details.end_date.slice(8, 10)}.${details.end_date.slice(5, 7)}.${details.end_date.slice(0, 4)}`;
-    const description = summary.shortDescription;
-    const categoty = description.includes('профессионалов') ? 'professional' :
-        description.includes('опытных') ? 'midlle' : 'beginner';
-    return {
-        title: `${summary.title} — ${summary.shortInfo}`,
-        description: description,
-        icon: details.author.profile_image,
-        // author: details.author.company? details.author.company: details.author.username - Будет ввывод имени или компании создателя
-        categoty: categoty,
-        start_date: startDate,
-        end_date: endDate,
-    };
-};
+function getStatusPriority(comp: competitionType): number {
+    const now = new Date();
+    const start = parseDateCached(comp.start_date);
+    const end = parseDateCached(comp.end_date);
+
+    if (isBefore(now, start)) {
+        // дальше чем через неделю — 3, иначе 2
+        return isAfter(start, addDays(now, 7)) ? 3 : 2;
+    }
+    if (isBefore(now, end)) {
+        return 1; // сейчас идёт
+    }
+    return 4;   // завершено или непопавшее в диапазон
+}
+
+export function competitionSort(a: competitionType, b: competitionType): number {
+    const now = new Date();
+    const prA = getStatusPriority(a);
+    const prB = getStatusPriority(b);
+    if (prA !== prB) return prA - prB;
+
+    // одинаковый приоритет → сортируем по дате
+    const startA = parseDateCached(a.start_date);
+    const startB = parseDateCached(b.start_date);
+    const endA = parseDateCached(a.end_date);
+    const endB = parseDateCached(b.end_date);
+
+    if (prA === 1) {
+        // идёт — по оставшемуся времени до конца
+        const remA = differenceInMilliseconds(endA, now);
+        const remB = differenceInMilliseconds(endB, now);
+        return remA - remB;
+    } else {
+        // ближайшие старты и далее — по дате старта
+        return differenceInMilliseconds(startA, startB);
+    }
+}
