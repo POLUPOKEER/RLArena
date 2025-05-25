@@ -1,7 +1,7 @@
 import { Dropdown, Menu, Button, Input, MenuProps } from 'antd';
 import { DownOutlined, SearchOutlined } from '@ant-design/icons';
 import { useMemo } from 'react';
-import { FilterValue, useFilterContext } from '../../pages/CompetitonsPage';
+import { FilterValue, useFilterContext } from '../providers/filter-provider';
 
 const CompetitionsHero = () => {
   const { filterValue, setFilterValue } = useFilterContext();

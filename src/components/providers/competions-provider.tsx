@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { competitionType } from "../helpers/competitons-data";
-import { fetchContests } from "../helpers/competion-api";
+import { competitionType } from "../../helpers/competitons-data";
+import { fetchContests } from "../../helpers/competion-api";
 
 interface CompetitionContexValue {
     competitions: competitionType[];
@@ -10,7 +10,7 @@ interface CompetitionContexValue {
 export const CompetitionContext = createContext<CompetitionContexValue | undefined>(undefined);
 
 
-const competionsProvider = ({ children }: { children: React.ReactNode }) => {
+export const CompetionsProvider = ({ children }: { children: React.ReactNode }) => {
     const [competitions, setCompetitions] = useState<competitionType[]>([]);
     const [loading, setLoading] = useState(true);
 

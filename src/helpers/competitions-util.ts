@@ -7,17 +7,17 @@ import {
     differenceInMilliseconds,
 } from 'date-fns';
 import { parseDateCached } from './date-cache.ts';
-import { FilterValue } from '../pages/CompetitonsPage';
 import { competitionType } from './competitons-data';
+import { FilterValue } from '../components/providers/filter-provider.tsx';
 
 export type CompetitionsCategory = 'both' | 'now' | 'near' | 'all';
 
 export function isCompetitionValid(
     comp: competitionType,
     option: CompetitionsCategory,
-    filterValue: FilterValue
+    filterValue?: FilterValue
 ): boolean {
-    if (filterValue !== 'none' && comp.categoty !== filterValue) {
+    if (filterValue && filterValue !== 'none' && comp.categoty !== filterValue) {
         return false;
     }
     if (option === 'all') return true;

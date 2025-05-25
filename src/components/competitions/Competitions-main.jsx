@@ -1,24 +1,25 @@
 import { useNavigate } from 'react-router-dom';
 import CompetitionCard from './CompetitionCard';
-import { competitionsData } from '../../helpers/competitons-data';
 import { isCompetitionValid } from '../../helpers/competitions-util';
 import { competitionSort } from '../../helpers/competitions-util';
 import { useMemo } from 'react';
+import { useCompetitionsContext } from '../providers/competions-provider';
 
 const Competitions = () => {
+  const { competitions, loading } = useCompetitionsContext();
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
     navigate('/competitions');
   };
-
-  let validCompetions = competitionsData;
+  let validCompetions = [];
   useMemo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    validCompetions = competitionsData.sort((a, b) => competitionSort(a, b))
+    validCompetions = [...competitions].sort((a, b) => competitionSort(a, b))
       .filter(comp => isCompetitionValid(comp, 'both')).slice(0, 3)
     console.log(validCompetions)
-  }, [competitionsData])
+  }, [competitions])
+  if (loading) return <div className="text-center py-10">Загрузка...</div>;
 
 
   return (

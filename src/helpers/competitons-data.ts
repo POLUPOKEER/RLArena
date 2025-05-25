@@ -6,7 +6,7 @@ export const competitionsData: competitionType[] = [
     author: 'NFL',
     start_date: "12.12.2024",
     end_date: "30.05.2025",
-    title: "1_NFL Big Data Bowl 2025",
+    title: "7_NFL Big Data Bowl 2025",
     description:
       "Помогите использовать поведение перед привязкой для прогнозирования и лучшего понимания тенденций команды и игроков НФЛ",
     icon: "/nfl.png",
