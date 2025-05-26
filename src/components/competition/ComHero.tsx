@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { contestDetails } from "../../helpers/competitions-api";
 
-const ComHero = () => {
+const ComHero = (props: { competition: contestDetails }) => {
   const [isHeartRed, setIsHeartRed] = useState(false);
-
+  const competition = props.competition;
   const toggleHeartColor = () => setIsHeartRed(!isHeartRed);
 
   return (
@@ -12,22 +13,22 @@ const ComHero = () => {
         {/* Левая часть: Картинка */}
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
           <img
-            src="/image 9.svg"
+            src={competition.image}
             alt="Competition illustration"
             className="w-full max-w-xs md:max-w-sm object-contain"
           />
           <div className="mt-4 text-sm md:text-base text-gray-700 text-center md:text-left">
-            Дата проведения: <strong>с 12.12.2024 по 01.03.2025</strong>
+            Дата проведения: <strong>с {competition.start_date} по {competition.end_date}</strong>
           </div>
         </div>
 
         {/* Правая часть: Текст */}
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start mt-8 md:mt-0 md:ml-8 text-center md:text-left">
           <h1 className="text-[24px] md:text-[36px] lg:text-[48px] font-bold leading-tight mb-4">
-            Задача FIDE и Google по созданию эффективного шахматного ИИ
+            {competition.title}
           </h1>
           <p className="text-[16px] md:text-[20px] lg:text-[24px] text-gray-500 mb-6">
-            Создавайте агентов для игры в шахматы с ограниченными ресурсами
+            {competition.shortDescription}
           </p>
           <button className="bg-black text-white px-8 py-3 rounded-full text-[18px] w-full md:w-auto">
             Принять участие
@@ -57,7 +58,7 @@ const ComHero = () => {
           Теги:
         </span>
         <div className="flex flex-wrap justify-center gap-3">
-          {["Симулятор", "Настольные игры", "Обучение с подкреплением"].map(
+          {[competition.contest_type, competition.categoty, "Обучение с подкреплением"].map(
             (tag) => (
               <button
                 key={tag}

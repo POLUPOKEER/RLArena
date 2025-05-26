@@ -1,20 +1,15 @@
-import React from 'react';
 import { Carousel } from 'antd';
 import { useEffect, useState, useRef } from 'react';
 import CompetitionCard from './CompetitionCard';
-import { competitionsData } from '../../helpers/competitons-data';
 import { isCompetitionValid, competitionSort } from '../../helpers/competitions-util';
 import { CompetitionsCategory } from '../../helpers/competitions-util';
 import { competitionType } from '../../helpers/competitons-data';
-import { useFilterContext } from '../../pages/CompetitonsPage';
-import { contestDetails, contestSummary, fetchContests } from '../../helpers/competion-api';
-
-type CompetitionsProps = {
-  category: CompetitionsCategory;
-};
+import { useFilterContext } from '../providers/filter-provider';
+import { useCompetitionsContext } from '../providers/competions-provider';
 
 export const Competitions = ({ category }: { category: CompetitionsCategory }) => {
-  const { filterValue, competitions, loading } = useFilterContext();
+  const { filterValue } = useFilterContext();
+  const { competitions, loading } = useCompetitionsContext()
   const [slides, setSlides] = useState<competitionType[][]>([]);
   const carouselRef = useRef<any>(null);
 

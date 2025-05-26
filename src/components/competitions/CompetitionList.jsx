@@ -1,10 +1,12 @@
 import { useState, useMemo } from "react";
 import CompetitionCard from "./CompetitionCard";
-import { useFilterContext } from '../../pages/CompetitonsPage';
 import { isCompetitionValid, competitionSort } from "../../helpers/competitions-util";
+import { useCompetitionsContext } from "../providers/competions-provider";
+import { useFilterContext } from "../providers/filter-provider";
 
 const CompetitionList = () => {
-  const { competitions, loading, filterValue } = useFilterContext();
+  const { filterValue } = useFilterContext;
+  const { competitions, loading } = useCompetitionsContext()
   const [visibleCount, setVisibleCount] = useState(6);
 
   const filteredCompetitions = useMemo(() => {

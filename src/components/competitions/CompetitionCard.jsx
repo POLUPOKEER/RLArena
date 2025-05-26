@@ -9,14 +9,15 @@ const CompetitionCard = ({
   description,
   icon,
   category,
-  author
+  author,
+  slug
 }) => {
   const navigate = useNavigate(); // Инициализируем navigate
   const user = JSON.parse(localStorage.getItem('currentUser'));
 
   const handleParticipateClick = () => {
     if (!user) return; // Если пользователь не авторизован, ничего не происходит при клике
-    navigate('/competition'); // Переход на страницу /competition при клике
+    navigate('/competition', { state: { competitionSlug: slug } }); // Переход на страницу /competition при клике
 
     // Прокручиваем страницу вверх
     window.scrollTo(0, 0);
@@ -69,25 +70,32 @@ const CompetitionCard = ({
         </p>
       </div>
       <div className="flex flex-row justify-between items-center">
-        <Tooltip title={isDisabled ? "Войдите в аккаунт для участия" : null}>
-          <button
-            disabled={isDisabled}
-            onClick={handleParticipateClick}
-            className={`
+        {
+          slug !== "" ?
+            <Tooltip title={isDisabled ? "Войдите в аккаунт для участия" : null}>
+              <button
+                disabled={isDisabled}
+                onClick={handleParticipateClick}
+                className={`
     py-2 md:py-3 px-4 my-[auto] md:px-6 max-h-[40px] rounded-full
     bg-[#2b73b1] hover:bg-[#2b73b1]/80
     transition-colors duration-200
     text-white text-[12px] md:text-[14px] leading-4
     self-end font-bold
     ${isDisabled
-                ? "opacity-60 cursor-not-allowed bg-gray-400 hover:bg-gray-400"
-                : "cursor-pointer hover:bg-[#2b73b1]/80"
-              }
+                    ? "opacity-60 cursor-not-allowed bg-gray-400 hover:bg-gray-400"
+                    : "cursor-pointer hover:bg-[#2b73b1]/80"
+                  }
   `}
-          >
-            Участвовать
-          </button>
-        </Tooltip>
+              >
+                Участвовать
+              </button>
+            </Tooltip> :
+            <>
+              <span className='italic'>*Тестовое соревнование</span>
+            </>
+        }
+
 
         {/* Блок с автором и иконкой */}
         <div className="w-[100px] h-[45px] md:w-[120px] md:h-[57px] flex items-center justify-end rounded-full bg-gray-100 overflow-hidden ml-auto pr-3">
