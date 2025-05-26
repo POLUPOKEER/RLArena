@@ -14,7 +14,7 @@ import Registration from "./components/Registration.jsx";
 import Login from "./components/Login.jsx";
 import FAQpage from "./pages/FAQpage.jsx";
 import LearningPage from "./pages/LearningPage.jsx";
-import CompetitionPage from "./pages/CompetitionPage.jsx";
+import CompetitionPage from "./pages/CompetitionPage.tsx";
 import CompetitonsPage from "./pages/CompetitonsPage.tsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import { CompetionsProvider } from "./components/providers/competions-provider.tsx";

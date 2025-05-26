@@ -7,10 +7,6 @@ import { competitionType } from '../../helpers/competitons-data';
 import { useFilterContext } from '../providers/filter-provider';
 import { useCompetitionsContext } from '../providers/competions-provider';
 
-type CompetitionsProps = {
-  category: CompetitionsCategory;
-};
-
 export const Competitions = ({ category }: { category: CompetitionsCategory }) => {
   const { filterValue } = useFilterContext();
   const { competitions, loading } = useCompetitionsContext()

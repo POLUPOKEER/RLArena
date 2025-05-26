@@ -1,4 +1,4 @@
-export type competitionType = Record<'start_date' | 'end_date' | 'title' | 'description' | 'icon' | 'categoty' | 'author', string>;
+export type competitionType = Record<'start_date' | 'end_date' | 'title' | 'description' | 'icon' | 'categoty' | 'author' | 'slug', string>;
 
 export const competitionsData: competitionType[] = [
   //Соревнования, уоторые уже идут
@@ -10,7 +10,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Помогите использовать поведение перед привязкой для прогнозирования и лучшего понимания тенденций команды и игроков НФЛ",
     icon: "/nfl.png",
-    categoty: "beginner"
+    categoty: "beginner",
+    slug: ""
   },
   {
     author: 'Google',
@@ -20,7 +21,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Создайте варианты моделей Gemma для конкретного языка или уникального культурного аспекта",
     icon: "/gemma.png",
-    categoty: "midlle"
+    categoty: "middle",
+    slug: ""
   },
   {
     author: 'TMD',
@@ -30,7 +32,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Помогите использовать поведение перед привязкой для прогнозирования и лучшего понимания тенденций команды и игроков НФЛ",
     icon: "/tmd.png",
-    categoty: "professional"
+    categoty: "professional",
+    slug: ""
   },
   {
     author: 'TMD',
@@ -40,7 +43,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Используйте AI для решения глобальных проблем и выиграйте уникальные призы.",
     icon: "/tmd.png",
-    categoty: "professional"
+    categoty: "professional",
+    slug: ""
   },
   {
     author: 'TMD',
@@ -50,7 +54,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/tmd.png",
-    categoty: "midlle"
+    categoty: "middle",
+    slug: ""
   },
 
   //Соревнования, которые скоро начануться (до старта меньше недели)
@@ -62,7 +67,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Помогите использовать поведение перед привязкой для прогнозирования и лучшего понимания тенденций команды и игроков НФЛ",
     icon: "/nfl.png",
-    categoty: "beginner"
+    categoty: "beginner",
+    slug: ""
   },
   {
     author: 'Пупкин В.П',
@@ -72,7 +78,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Создайте варианты моделей Gemma для конкретного языка или уникального культурного аспекта",
     icon: "/gemma.png",
-    categoty: "midlle"
+    categoty: "middle",
+    slug: ""
   },
   {
     author: 'Пупкин В.П',
@@ -82,7 +89,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Помогите использовать поведение перед привязкой для прогнозирования и лучшего понимания тенденций команды и игроков НФЛ",
     icon: "/tmd.png",
-    categoty: "beginner"
+    categoty: "beginner",
+    slug: ""
   },
   {
     author: 'Пупкин В.П',
@@ -92,7 +100,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Используйте AI для решения глобальных проблем и выиграйте уникальные призы.",
     icon: "/tmd.png",
-    categoty: "beginner"
+    categoty: "beginner",
+    slug: ""
   },
   {
     author: 'Пупкин В.П',
@@ -102,7 +111,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/nfl.png",
-    categoty: "midlle"
+    categoty: "middle",
+    slug: ""
   },
   {
     author: 'NFL',
@@ -112,7 +122,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/nfl.png",
-    categoty: "professional"
+    categoty: "professional",
+    slug: ""
   },
   {
     author: 'Пупкин В.П',
@@ -122,7 +133,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/tmd.png",
-    categoty: "beginner"
+    categoty: "beginner",
+    slug: ""
   },
   {
     author: 'Google',
@@ -132,7 +144,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/gemma.png",
-    categoty: "professional"
+    categoty: "professional",
+    slug: ""
   },
   {
     author: 'Пупкин В.П',
@@ -142,7 +155,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/tmd.png",
-    categoty: "midlle"
+    categoty: "middle",
+    slug: ""
   },
   //Соревнования без статуса
   {
@@ -153,7 +167,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/hackathon.png",
-    categoty: "professional"
+    categoty: "professional",
+    slug: ""
   },
   {
     author: 'Пупкин В.П',
@@ -163,7 +178,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/hackathon.png",
-    categoty: "midlle"
+    categoty: "middle",
+    slug: ""
   },
   {
     author: 'Пупкин В.П',
@@ -173,7 +189,8 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/hackathon.png",
-    categoty: "professional"
+    categoty: "professional",
+    slug: ""
   },
   //Завершившиеся соревнование 
   {
@@ -184,6 +201,7 @@ export const competitionsData: competitionType[] = [
     description:
       "Соревнование для решения сложных задач с использованием анализа данных.",
     icon: "/hackathon.png",
-    categoty: "midlle"
+    categoty: "middle",
+    slug: ""
   },
 ];

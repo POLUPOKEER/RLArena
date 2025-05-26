@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { competitionType } from "../../helpers/competitons-data";
-import { fetchContests } from "../../helpers/competion-api";
+import { fetchContests } from "../../helpers/competitions-api";
 
 interface CompetitionContexValue {
     competitions: competitionType[];

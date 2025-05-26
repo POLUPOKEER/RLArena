@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { fetchContests } from "../../helpers/competion-api";
+import { fetchContests } from "../../helpers/competitions-api";
 import { competitionType } from "../../helpers/competitons-data";
 
 export type FilterValue = 'none' | 'beginner' | 'midlle' | 'professional' | undefined;
