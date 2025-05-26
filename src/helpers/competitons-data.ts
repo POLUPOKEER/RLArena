@@ -61,8 +61,8 @@ export const competitionsData: competitionType[] = [
   //Соревнования, которые скоро начануться (до старта меньше недели)
   {
     author: 'NFL',
-    start_date: "11.05.2025",
-    end_date: "30.05.2025",
+    start_date: "28.06.2025",
+    end_date: "29.06.2025",
     title: "1_NFL Big Data Bowl 2025",
     description:
       "Помогите использовать поведение перед привязкой для прогнозирования и лучшего понимания тенденций команды и игроков НФЛ",
@@ -72,7 +72,7 @@ export const competitionsData: competitionType[] = [
   },
   {
     author: 'Пупкин В.П',
-    start_date: "12.05.2025",
+    start_date: "02.06.2025",
     end_date: "20.07.2025",
     title: "2_Unlock Global with Gemma",
     description:
@@ -83,8 +83,8 @@ export const competitionsData: competitionType[] = [
   },
   {
     author: 'Пупкин В.П',
-    start_date: "13.05.2025",
-    end_date: "30.05.2025",
+    start_date: "01.06.2025",
+    end_date: "25.06.2025",
     title: "3_NFL Big Data Bowl 2025",
     description:
       "Помогите использовать поведение перед привязкой для прогнозирования и лучшего понимания тенденций команды и игроков НФЛ",
@@ -94,7 +94,7 @@ export const competitionsData: competitionType[] = [
   },
   {
     author: 'Пупкин В.П',
-    start_date: "14.05.2025",
+    start_date: "28.05.2025",
     end_date: "15.08.2025",
     title: "4_I for Good Challenge",
     description:
@@ -105,7 +105,7 @@ export const competitionsData: competitionType[] = [
   },
   {
     author: 'Пупкин В.П',
-    start_date: "15.05.2025",
+    start_date: "29.05.2025",
     end_date: "25.09.2025",
     title: "5_Data Science Hackathon",
     description:

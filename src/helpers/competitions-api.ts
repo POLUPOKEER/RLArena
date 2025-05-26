@@ -96,7 +96,6 @@ const getCompetitionGeneral = (details, onlyGeneral = true): competitionType | c
 };
 export const fetchContestBySlug = async (setCompetition, setLoading, slug) => {
     try {
-        console.log(slug)
         const res = await fetch(`http://localhost/api/v1/contests/${slug}`);
         const competition = await res.json();
         const validCompetition = getCompetitionGeneral(competition, false)
