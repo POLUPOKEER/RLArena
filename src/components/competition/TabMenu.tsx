@@ -7,7 +7,6 @@ import { contestDetails } from "../../helpers/competitions-api";
 
 const TabMenu = (props: { competition: contestDetails }) => {
   const competition = props.competition;
-  console.log(competition)
   const [activeTab, setActiveTab] = useState("overview");
   const [isDrawerVisible, setDrawerVisible] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });

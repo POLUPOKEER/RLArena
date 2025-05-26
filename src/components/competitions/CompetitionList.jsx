@@ -5,7 +5,7 @@ import { useCompetitionsContext } from "../providers/competions-provider";
 import { useFilterContext } from "../providers/filter-provider";
 
 const CompetitionList = () => {
-  const { filterValue } = useFilterContext;
+  const { filterValue } = useFilterContext();
   const { competitions, loading } = useCompetitionsContext()
   const [visibleCount, setVisibleCount] = useState(6);
 
