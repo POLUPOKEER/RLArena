@@ -7,6 +7,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
 
   const handleRegistration = async (e) => {
@@ -25,7 +26,7 @@ const Login = () => {
 
       navigate("/Main");
     } catch (error) {
-      setError("Произошла ошибка");
+      setError(error.message);
     }
   };
 

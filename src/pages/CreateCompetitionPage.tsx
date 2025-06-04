@@ -7,6 +7,7 @@ import {
     Button,
     message,
     Radio,
+    Tooltip,
 } from 'antd';
 import {
     InboxOutlined,
@@ -22,7 +23,7 @@ const { RangePicker } = DatePicker;
 export const CreateCompetitionPage = () => {
     const [contestType, setContestType] = useState<'ml' | 'rl'>('ml');
     const [form] = Form.useForm();
-
+    const token = localStorage.getItem('token');
     const onFinish = async (values: any) => {
         const formData = new FormData();
         try {
@@ -52,12 +53,11 @@ export const CreateCompetitionPage = () => {
                 formData.append('dataset_private', '-');
             }
 
-            //Временный токен
             const res = await fetch('http://localhost/api/v1/contests', {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0IiwiZXhwIjoxNzQ5NjY2MTIwfQ.ULbYy5RObZjdn07Q6HqyRoMF9Xb2jGdGXc6KvPguY1U',
+                    Authorization: 'Bearer ' + token,
                 }
             });
 
@@ -79,6 +79,7 @@ export const CreateCompetitionPage = () => {
         maxCount: 1,
     };
 
+    const isLogin = localStorage.getItem('token');
     return (
         <div className="bg-primary min-h-screen py-12 px-4 md:px-16">
             <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-10">
@@ -254,9 +255,11 @@ export const CreateCompetitionPage = () => {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="w-full md:w-1/2 block mx-auto">
-                            Создать соревнование
-                        </Button>
+                        <Tooltip title={!isLogin ? "Войдите в аккаунт для создания" : null}>
+                            <Button disabled={!isLogin} type="primary" htmlType="submit" className="w-full md:w-1/2 block mx-auto">
+                                Создать соревнование
+                            </Button>
+                        </Tooltip>
                     </Form.Item>
                 </Form>
             </div>

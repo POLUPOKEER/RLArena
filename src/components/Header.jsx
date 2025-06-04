@@ -9,7 +9,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem('currentUser'));
+  const user = localStorage.getItem('token');
 
   const menuItems = {
     Соревнования: "/competitions",
@@ -21,7 +21,7 @@ const Header = () => {
 
   const handleLogout = () => {
     try {
-      localStorage.removeItem('currentUser');
+      localStorage.removeItem('token');
       message.success('Вы успешно вышли из системы');
       navigate('/Main');
     } catch (error) {

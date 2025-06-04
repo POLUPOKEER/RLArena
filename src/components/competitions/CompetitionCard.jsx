@@ -13,7 +13,7 @@ const CompetitionCard = ({
   slug
 }) => {
   const navigate = useNavigate(); // Инициализируем navigate
-  const user = JSON.parse(localStorage.getItem('currentUser'));
+  const user = localStorage.getItem('token');
 
   const handleParticipateClick = () => {
     if (!user) return; // Если пользователь не авторизован, ничего не происходит при клике
