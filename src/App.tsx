@@ -17,6 +17,7 @@ import LearningPage from "./pages/LearningPage.jsx";
 import CompetitionPage from "./pages/CompetitionPage.tsx";
 import CompetitonsPage from "./pages/CompetitonsPage.tsx";
 import ContactPage from "./pages/ContactPage.jsx";
+import { CreateCompetitionPage } from "./pages/CreateCompetitionPage.tsx";
 import { CompetionsProvider } from "./components/providers/competions-provider.tsx";
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
             }
           />
           <Route path="/Competitions" element={<CompetitonsPage />} />
+          <Route path="CreateCompetition" element={<CreateCompetitionPage />} />
           <Route path="/learning" element={<LearningPage />} />
           <Route
             path="/forum"

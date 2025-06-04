@@ -52,19 +52,17 @@ const CompetitionsHero = () => {
                 {currentLabel} <img src="/Options.svg" alt="Options" className="w-4 h-4" />
               </Button>
             </Dropdown>
-            <Dropdown>
-              <Button
-                disabled
-                type="text"
-                className={`
+            <Button
+              disabled
+              type="text"
+              className={`
                   font-semibold text-lg px-4 py-2 text-[#141416] rounded-md
                   hover:text-blue-600 hover:border-blue-500 transition-all flex items-center gap-2
                 `}
-              >
-                <span>★</span>
-                Самые популярные
-              </Button>
-            </Dropdown>
+            >
+              <span>★</span>
+              Самые популярные
+            </Button>
           </div>
           <Input
             placeholder="Найти соревнование..."

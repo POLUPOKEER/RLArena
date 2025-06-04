@@ -9,18 +9,19 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem('currentUser'));
+  const user = localStorage.getItem('token');
 
   const menuItems = {
     Соревнования: "/competitions",
     Обучение: "/learning",
+    "Создать Соревнование": "/CreateCompetition",
     FAQ: "/faq",
     Контакты: "/contact",
   };
 
   const handleLogout = () => {
     try {
-      localStorage.removeItem('currentUser');
+      localStorage.removeItem('token');
       message.success('Вы успешно вышли из системы');
       navigate('/Main');
     } catch (error) {
@@ -56,7 +57,7 @@ const Header = () => {
       </Tooltip>
 
       {/* меню для dekstop */}
-      <div id="menu" className="hidden md:flex flex-row gap-8 flex-1">
+      <div id="menu" className="hidden lg:flex flex-row gap-8 flex-1">
         {Object.keys(menuItems).map((item, index) => (
           <Link
             to={menuItems[item]}
@@ -72,7 +73,7 @@ const Header = () => {
       <div>
         <button
           onClick={toggleMenu}
-          className="relative w-5 h-4 flex flex-col justify-between items-center md:hidden z-50"
+          className="relative w-5 h-4 flex flex-col justify-between items-center lg:hidden z-50"
           aria-label="Toggle menu"
         >
           <span
@@ -90,7 +91,7 @@ const Header = () => {
         </button>
         <div
           id="user"
-          className="hidden md:block w-[40px] h-[40px] flex-shrink-0 bg-[#e6e8ec] rounded-full"
+          className="hidden lg:block w-[40px] h-[40px] flex-shrink-0 bg-[#e6e8ec] rounded-full"
         >
           <div className="hidden md:block">
             {user ? (
@@ -125,7 +126,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-[92px] left-0 right-0 bg-[#fcfcfd] md:hidden z-50"
+            className="absolute top-[92px] left-0 right-0 bg-[#fcfcfd] lg:hidden z-50"
           >
             <div className="flex flex-col w-full border-t border-[#e6e8ec]">
               {Object.keys(menuItems).map((item, index) => (
