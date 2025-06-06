@@ -9,7 +9,7 @@ const CompetitionsHero = () => {
   const competitions = [
     { label: "Все соревнования", value: 'none' },
     { label: "Для новичков", value: 'beginner' },
-    { label: "Для опытных пользователей", value: 'midlle' },
+    { label: "Для опытных пользователей", value: 'middle' },
     { label: "Профессионалам", value: 'professional' },
   ];
 

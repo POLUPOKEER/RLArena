@@ -25,3 +25,18 @@ export const login = async (data: LoginDataType) => {
 
   return await response.json();
 };
+
+export const getCurrentUser = async (token) => {
+  const response = await fetch("http://localhost/api/v1/users/me", {
+    method: "GET",
+    headers: {
+      Authorization: 'Bearer ' + token,
+    }
+  })
+
+  if (!response.ok) {
+    throw new Error("Произошла ошибка");
+  }
+
+  return await response.json();
+}

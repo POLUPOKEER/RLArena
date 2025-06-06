@@ -109,3 +109,15 @@ export const fetchContestBySlug = async (setCompetition, setLoading, slug) => {
 
 }
 
+export const deleteContest = async (uuid, token) => {
+    const response = await fetch(`http://localhost/api/v1/contests/${uuid}`, {
+        method: "DELETE",
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+    if (!response.ok) {
+        throw new Error("Произошла ошибка");
+    }
+}

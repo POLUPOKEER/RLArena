@@ -65,6 +65,7 @@ const Competitions = () => {
                     description={comp.description}
                     icon={comp.icon}
                     slug={comp.slug}
+                    author={comp.author}
                   />
                 ))
               }

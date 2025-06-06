@@ -16,18 +16,19 @@ import {
 } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
 import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
 
 const { Dragger } = Upload;
 const { RangePicker } = DatePicker;
 
 export const CreateCompetitionPage = () => {
+    const navigate = useNavigate();
     const [contestType, setContestType] = useState<'ml' | 'rl'>('ml');
     const [form] = Form.useForm();
     const token = localStorage.getItem('token');
     const onFinish = async (values: any) => {
         const formData = new FormData();
         try {
-            console.log('Form values:', values);
             formData.append('title', values.title);
             formData.append('shortInfo', values.shortInfo);
             formData.append('shortDescription', values.shortDescription);
@@ -62,8 +63,11 @@ export const CreateCompetitionPage = () => {
             });
 
             if (res.ok) {
-                message.success('Соревнование успешно создано!');
                 form.resetFields();
+                navigate('/Main')
+                window.location.reload()
+                window.scrollTo({ top: 0 })
+                message.success('Соревнование успешно создано!');
             } else {
                 const errorText = await res.text();
                 throw new Error(errorText);
@@ -204,7 +208,7 @@ export const CreateCompetitionPage = () => {
                             </Form.Item>
                             <Form.Item
                                 name="dataset_private"
-                                label="Приватный датасет (exel-файл)"
+                                label="Приватный датасет (csv-файл)"
                                 rules={[{ required: true, message: 'Пожалуйста, загрузите приватный датасет!' }]}
                             >
                                 <Dragger {...uploadProps}>
