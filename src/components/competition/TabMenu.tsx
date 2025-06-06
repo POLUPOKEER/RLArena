@@ -4,6 +4,7 @@ import { Drawer, Button } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import { useMediaQuery } from "react-responsive";
 import { contestDetails } from "../../helpers/competitions-api";
+import ReactMarkdown from 'react-markdown';
 
 const TabMenu = (props: { competition: contestDetails }) => {
   const competition = props.competition;
@@ -41,15 +42,16 @@ const TabMenu = (props: { competition: contestDetails }) => {
         return (
           <div>
             <h2 className="text-2xl font-bold mb-4">Обзор</h2>
-            {competition.description}
+            <ReactMarkdown>{competition.description}</ReactMarkdown>
           </div>
         );
       case "data":
         return (
           <div>
             <h2 className="text-2xl font-bold mb-4">Данные</h2>
-            <p className="text-lg mb-4">
-              Здесь можно скачать файл данных для работы
+            <ReactMarkdown>{competition.dataDescription}</ReactMarkdown>
+            <p className="text-lg mb-4 mt-5">
+              Здесь можно скачать файл данных для работы:
             </p>
             <div className="space-y-2">
               <a

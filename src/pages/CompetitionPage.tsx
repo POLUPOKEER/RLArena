@@ -4,7 +4,6 @@ import Footer from "../components/Footer.jsx";
 import { useLocation } from 'react-router-dom';
 import { contestDetails, fetchContestBySlug } from "../helpers/competitions-api.ts";
 import { useEffect, useState } from "react";
-import { p } from "framer-motion/client";
 export default function CompetitionPage() {
   const location = useLocation();
   const competitionSlug = location.state.competitionSlug;

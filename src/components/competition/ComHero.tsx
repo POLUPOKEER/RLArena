@@ -1,12 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { contestDetails } from "../../helpers/competitions-api";
-
+import { getCurrentUser } from "../../helpers/users-api";
+import { Button, Modal } from "antd";
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import { deleteContest } from "../../helpers/competitions-api";
+import { useNavigate } from "react-router-dom";
 const ComHero = (props: { competition: contestDetails }) => {
   const [isHeartRed, setIsHeartRed] = useState(false);
   const competition = props.competition;
   const toggleHeartColor = () => setIsHeartRed(!isHeartRed);
-
+  const navigate = useNavigate();
+  const [user, setUser] = useState<any>(null);
+  const token = localStorage.getItem('token');
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getCurrentUser(token);
+        setUser(userData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUser();
+  }, []);
+  const onConfirm = async () => {
+    await deleteContest(competition.uuid, token);
+    navigate('/Main')
+    window.location.reload()
+  };
+  const showDeleteConfirm = () => {
+    const { confirm } = Modal;
+    confirm({
+      title: 'Вы уверены, что хотите удалить?',
+      icon: <ExclamationCircleFilled style={{ color: '#ff0000' }} />,
+      content: 'Это действие нельзя будет отменить',
+      okText: 'Да, удалить',
+      okType: 'danger',
+      cancelText: 'Отмена',
+      centered: true,
+      onOk() {
+        onConfirm();
+      },
+    });
+  }
   return (
+    user &&
     <section className="relative w-full flex flex-col items-center py-10 px-4 overflow-hidden">
       {/* Основной контейнер */}
       <div className="relative flex flex-col md:flex-row items-center md:items-start justify-between w-full max-w-6xl bg-primary shadow-lg rounded-[30px] p-6 md:p-10 mb-6">
@@ -30,9 +68,28 @@ const ComHero = (props: { competition: contestDetails }) => {
           <p className="text-[16px] md:text-[20px] lg:text-[24px] text-gray-500 mb-6">
             {competition.shortDescription}
           </p>
-          <button className="bg-black text-white px-8 py-3 rounded-full text-[18px] w-full md:w-auto">
-            Принять участие
-          </button>
+          {
+            !(user.id === competition.author_id) ?
+              <button className="bg-black text-white px-8 py-3 rounded-full text-[18px] w-full md:w-auto">
+                Принять участие
+              </button> :
+              <Button
+                type="primary"
+                danger
+                onClick={showDeleteConfirm}
+                className="
+        bg-[#ff0000] hover:bg-[#ff0000]/90
+        text-white px-8 py-3 h-auto
+        rounded-full text-lg
+        w-full md:w-auto
+        flex items-center justify-center
+        transition-colors duration-200
+      "
+              >
+                Удалить Соревнование
+              </Button>
+          }
+
         </div>
 
         {/* Кнопка-сердечко */}
