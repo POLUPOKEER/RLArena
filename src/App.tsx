@@ -19,6 +19,7 @@ import CompetitonsPage from "./pages/CompetitonsPage.tsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import { CreateCompetitionPage } from "./pages/CreateCompetitionPage.tsx";
 import { CompetionsProvider } from "./components/providers/competions-provider.tsx";
+import RegisterPage from "./pages/RegisterPage.tsx";
 
 const App = () => {
   return (
@@ -71,14 +72,7 @@ const App = () => {
               </>
             }
           />
-          <Route
-            path="/Registration"
-            element={
-              <>
-                <Registration />
-              </>
-            }
-          />
+          <Route path="/Registration" element={<RegisterPage />} />
           <Route
             path="/Login"
             element={

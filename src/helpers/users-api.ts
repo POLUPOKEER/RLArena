@@ -26,17 +26,49 @@ export const login = async (data: LoginDataType) => {
   return await response.json();
 };
 
-export const getCurrentUser = async (token) => {
-  const response = await fetch("http://localhost/api/v1/users/me", {
-    method: "GET",
-    headers: {
-      Authorization: 'Bearer ' + token,
-    }
-  })
+export type RegisterDataType = {
+  profile_image: File;
+  username: string;
+  email: string;
+  password: string;
+};
+
+export type RegisterResponseType = {
+  access_token: string;
+  token_type: string;
+};
+
+export const register = async (data: RegisterDataType) => {
+  const formData = new FormData();
+
+  formData.append("profile_image", data.profile_image);
+  formData.append("username", data.username);
+  formData.append("email", data.email);
+  formData.append("password", data.password);
+
+  const response = await fetch("http://localhost/api/v1/users", {
+    method: "POST",
+    body: formData,
+  });
 
   if (!response.ok) {
     throw new Error("Произошла ошибка");
   }
 
   return await response.json();
-}
+};
+
+export const getCurrentUser = async (token) => {
+  const response = await fetch("http://localhost/api/v1/users/me", {
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Произошла ошибка");
+  }
+
+  return await response.json();
+};
